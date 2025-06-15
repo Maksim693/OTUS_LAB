@@ -2,32 +2,49 @@
 ## "VLAN и маршрутизация между VLAN"
 ![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_1/Pictures_LAB_1/Pict_LAB1)
 
+# Table of Contents
+1. [Example](#example)
+2. [Example2](#example2)
+3. [Third Example](#third-example)
+4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+## Example
+## Example2
+## Third Example
+## [Fourth Example](http://www.fourthexample.com)
+
 ## Build the Network and Configure Basic Device Settings
 ##### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
 ### 1. Cable the network as shown in the topology.
 ##### Attach the devices as shown in the topology diagram, and cable as necessary.
-### Ответ:
+### 2. Configure basic settings for the router.
+- [x] Console into the router and enable privileged EXEC mode.
+`$ Пояснение
+- [x] Enter configuration mode.
+```
+Grand@DESKTOP-VSP2RTB MINGW64 ~/editor.md (master)
+$ git editormd.js --help
+git: 'editormd.js' is not a git command. See 'git --help'.
+
+Grand@DESKTOP-VSP2RTB MINGW64 ~/editor.md (master)
+$ npm install editor.md
+bash: npm: command not found
+```
+- [x] Assign a device name to the router.
+**Пояснение**
 ```
 Блок кода
 ```
-### 2. Configure basic settings for the router.
-- [x] Console into the router and enable privileged EXEC mode.
-- [x]  Enter configuration mode.
-- [x]   Assign a device name to the router.
-- [x]  Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
+- [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
 though they were host names.
-- [x]  Assign class as the privileged EXEC encrypted password.
-- [x]  Assign cisco as the console password and enable login.
+- [x] Assign class as the privileged EXEC encrypted password.
+- [x] Assign cisco as the console password and enable login.
 - [x] Assign cisco as the VTY password and enable login.
 - [x] Encrypt the plaintext passwords.
 - [x] Create a banner that warns anyone accessing the device that unauthorized access is prohibited.
 - [x] Save the running configuration to the startup configuration file.
 - [x] Set the clock on the router.
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
-### Ответ:
-```
-Блок кода
-```
+
 ### 3.Configure basic settings for each switch.
 Open configuration window
 #### a. Console into the switch and enable privileged EXEC mode.
