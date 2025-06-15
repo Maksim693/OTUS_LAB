@@ -4,16 +4,16 @@
 
 # *Table of Contents*
 1. [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
-   - [Cable the network as shown in the topology](#Cable-the-network-as-shown-in-the-topology.)
-2. [Example2](#example2)
+   - [Cable the network as shown in the topology](#Cable-the-network-as-show-in-the-topology.)
+2. [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
 
 ## Build the Network and Configure Basic Device Settings
 ##### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
-### 1. Cable the network as shown in the topology.
+### 1. Cable the network as show in the topology.
 ##### Attach the devices as shown in the topology diagram, and cable as necessary.
 ### 2. Configure basic settings for the router.
 - [x] Console into the router and enable privileged EXEC mode.
-`$ Пояснение
+Пояснение...
 - [x] Enter configuration mode.
 ```
 Grand@DESKTOP-VSP2RTB MINGW64 ~/editor.md (master)
@@ -42,20 +42,20 @@ though they were host names.
 
 ### 3.Configure basic settings for each switch.
 Open configuration window
-#### a. Console into the switch and enable privileged EXEC mode.
-#### b. Enter configuration mode.
-#### c. Assign a device name to the switch.
-#### d. Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
+- [x] Console into the switch and enable privileged EXEC mode.
+- [x] Enter configuration mode.
+- [x] Assign a device name to the switch.
+- [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
 though they were host names.
-#### e. Assign class as the privileged EXEC encrypted password.
-#### f. Assign cisco as the console password and enable login.
-#### g. Assign cisco as the vty password and enable login.
-#### h. Encrypt the plaintext passwords.
-#### i. Create a banner that warns anyone accessing the device that unauthorized access is prohibited.
-#### j. Set the clock on the switch.
+- [x] Assign class as the privileged EXEC encrypted password.
+- [x] Assign cisco as the console password and enable login.
+- [x] Assign cisco as the vty password and enable login.
+- [x] Encrypt the plaintext passwords.
+- [x] Create a banner that warns anyone accessing the device that unauthorized access is prohibited.
+- [x] Set the clock on the switch.
 ##### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this
 command.
-#### k. Copy the running configuration to the startup configuration.
+- [x] Copy the running configuration to the startup configuration.
 Close configuration window
 #### Ответ:
 ```
