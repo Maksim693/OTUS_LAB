@@ -2,10 +2,10 @@
 ## "VLAN и маршрутизация между VLAN"
 ![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_1/Pictures_LAB_1/Pict_LAB1)
 
-# *Table of Contents*
+## *Table of Contents*
 1. [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
 2. [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
-3. [Configure an 802.1Q Trunk Between the Switches](#Configure-an-802.1Q-Trunk-Between-the-Switches)
+3. [Configure an 802.1Q Trunk Between the Switches](#Configure-an-802-1Q-Trunk-Between-the-Switches)
 4. [Configure Inter-VLAN Routing on the Router](#Configure-Inter-VLAN-Routing-on-the-Router)
 
 ## Build the Network and Configure Basic Device Settings
