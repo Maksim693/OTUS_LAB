@@ -4,7 +4,7 @@
 
 # *Table of Contents*
 1. [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
-    2. [Cable the network as show in the topology.](#Cable-the-network-as-show-in-the-topology.)
+    - [Cable the network as show in the topology.](##Cable-the-network-as-show-in-the-topology.)
 3. [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
 
 ## Build the Network and Configure Basic Device Settings
