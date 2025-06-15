@@ -1,35 +1,28 @@
-# Практическая работа №1 
+# Практическая работа №1
 ## "VLAN и маршрутизация между VLAN"
 ![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_1/Pictures_LAB_1/Pict_LAB1)
 
 ## *Table of Contents*
-1. [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
-2. [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
-3. [Configure an 802.1Q Trunk Between the Switches](##configure-an-8021q-trunk-between-the-switches)
-4. [Configure Inter-VLAN Routing on the Router](#Configure-Inter-VLAN-Routing-on-the-Router)
+- [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
+- [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
+- [Configure an 802.1Q Trunk Between the Switches](#configure-an-8021q-trunk-between-the-switches)
+- [Configure Inter-VLAN Routing on the Router](#Configure-Inter-VLAN-Routing-on-the-Router)
 
 ## Build the Network and Configure Basic Device Settings
 ##### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
-### 1. Cable the network as show in the topology.
+#### 1. Cable the network as show in the topology.
 - [x] Attach the devices as shown in the topology diagram, and cable as necessary.
-### 2. Configure basic settings for the router.
+#### 2. Configure basic settings for the router.
 - [x] Console into the router and enable privileged EXEC mode.
-Пояснение...
+> Пояснение...
 - [x] Enter configuration mode.
+>Пояснение
 ```
-Grand@DESKTOP-VSP2RTB MINGW64 ~/editor.md (master)
-$ git editormd.js --help
-git: 'editormd.js' is not a git command. See 'git --help'.
-
-Grand@DESKTOP-VSP2RTB MINGW64 ~/editor.md (master)
-$ npm install editor.md
-bash: npm: command not found
+interface FastEthernet0/5
+ switchport trunk allowed vlan 3-4,7
+ switchport mode trunk
 ```
 - [x] Assign a device name to the router.
-##### **Пояснение**
-```
-Блок кода
-```
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
 though they were host names.
 - [x] Assign class as the privileged EXEC encrypted password.
@@ -58,13 +51,13 @@ though they were host names.
 command.
 - [x] Copy the running configuration to the startup configuration.
 - [x] Close configuration window
-#### Ответ:
+>Ответ:
 ```
 Блок кода
 ```
 ### 4.Configure PC hosts.
 - [x] Refer to the Addressing Table for PC host address information.
-#### Ответ:
+> Ответ:
 ```
 Блок кода
 ```
@@ -104,27 +97,27 @@ across the trunk.
 - Why does F0/5 not appear in the list of trunks?
 - Type your answers here.
 - Close configuration window
+> Ответ:
 
 ## Configure Inter-VLAN Routing on the Router
-##### Open configuration window
+- [x] Open configuration window
 - [x] Activate interface G0/0/1 on the router.
 - [x] Configure sub-interfaces for each VLAN as specified in the IP addressing table. All sub-interfaces use
 802.1Q encapsulation. Ensure the sub-interface for the native VLAN does not have an IP address
 assigned. Include a description for each sub-interface.
 - [x] Use the show ip interface brief command to verify the sub-interfaces are operational.
 - [x] Close configuration window
-### Ответ:
-```
-Блок кода
-```
+> Ответ:
+>> ```Блок кода```
+
 ## Verify Inter-VLAN Routing is Working
-### 1.Complete the following tests from PC-A. All should be successful.
+#### 1.Complete the following tests from PC-A. All should be successful.
 Note: You may have to disable the PC firewall for pings to be successful.
 - [x] Ping from PC-A to its default gateway.
 - [x] Ping from PC-A to PC-B
 - [x] Ping from PC-A to S2
-#### Ответ:
+> Ответ:
 
-### 2. Complete the following test from PC-B.
+#### 2. Complete the following test from PC-B.
 - [x]From the command prompt on PC-B, issue the tracert command to the address of PC-A. 
-#### Ответ:
+> Ответ:
