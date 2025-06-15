@@ -4,13 +4,13 @@
 
 # *Table of Contents*
 1. [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
-   - [Cable the network as shown in the topology.](#Cable-the-network-as-show-in-the-topology.)
-2. [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
+2. [Cable the network as shown in the topology.](#Cable-the-network-as-show-in-the-topology.)
+3. [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
 
 ## Build the Network and Configure Basic Device Settings
 ##### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
 ### 1. Cable the network as show in the topology.
-##### Attach the devices as shown in the topology diagram, and cable as necessary.
+- [x] Attach the devices as shown in the topology diagram, and cable as necessary.
 ### 2. Configure basic settings for the router.
 - [x] Console into the router and enable privileged EXEC mode.
 Пояснение...
@@ -56,13 +56,13 @@ though they were host names.
 ##### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this
 command.
 - [x] Copy the running configuration to the startup configuration.
-Close configuration window
+- [x] Close configuration window
 #### Ответ:
 ```
 Блок кода
 ```
 ### 4.Configure PC hosts.
-Refer to the Addressing Table for PC host address information.
+- [x]Refer to the Addressing Table for PC host address information.
 #### Ответ:
 ```
 Блок кода
