@@ -4,7 +4,7 @@
 
 # *Table of Contents*
 1. [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
-   - [Cable the network as shown in the topology](#Cable-the-network-as-shown-in-the-topology)
+   - [Cable the network as shown in the topology](#Cable-the-network-as-shown-in-the-topology.)
 2. [Example2](#example2)
 
 ## Build the Network and Configure Basic Device Settings
