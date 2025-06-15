@@ -4,13 +4,8 @@
 
 # *Table of Contents*
 1. [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
-  - [Cable the network as shown in the topology](Cable-the-network-as-shown-in-the-topology.)
-3. [Example2](#example2)
-4. [Third Example](#third-example)
-5. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
-## Example2
-## Third Example
-## [Fourth Example](http://www.fourthexample.com)
+   - [Cable the network as shown in the topology](#Cable-the-network-as-shown-in-the-topology)
+2. [Example2](#example2)
 
 ## Build the Network and Configure Basic Device Settings
 ##### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
