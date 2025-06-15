@@ -33,9 +33,8 @@ though they were host names.
 - [x] Save the running configuration to the startup configuration file.
 - [x] Set the clock on the router.
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
-
-### 3.Configure basic settings for each switch.
-Open configuration window
+### 3. Configure basic settings for each switch.
+- [x] Open configuration window
 - [x] Console into the switch and enable privileged EXEC mode.
 - [x] Enter configuration mode.
 - [x] Assign a device name to the switch.
@@ -55,41 +54,38 @@ command.
 ```
 Блок кода
 ```
-### 4.Configure PC hosts.
+### 4. Configure PC hosts.
 - [x] Refer to the Addressing Table for PC host address information.
-> Ответ:
+>Ответ:
 ```
 Блок кода
 ```
 ## Create VLANs and Assign Switch Ports
-In Part 2, you will create VLANs, as specified in the table above, on both switches. You will then assign the
-VLANs to the appropriate interface. The show vlan command is used to verify your configuration settings.
-Complete the following tasks on each switch.
-
-### 1.Create VLANs on both switches.
-Open configuration window
+##### In Part 2, you will create VLANs, as specified in the table above, on both switches. You will then assign the VLANs to the appropriate interface. The show vlan command is used to verify your configuration settings. Complete the following tasks on each switch.
+#### 1. Create VLANs on both switches.
+- [x] Open configuration window
 - [x] Create and name the required VLANs on each switch from the table above.
 - [x] Configure the management interface and default gateway on each switch using the IP address
 information in the Addressing Table.
 - [x] Assign all unused ports on both switches to the ParkingLot VLAN, configure them for static access mode,
 and administratively deactivate them.
-
-### 2.Assign VLANs to the correct switch interfaces.
+#### 2. Assign VLANs to the correct switch interfaces.
 - [x] Assign used ports to the appropriate VLAN (specified in the VLAN table above) and configure them for
 static access mode. Be sure to do this on both switches
 - [x] Issue the show vlan brief command and verify that the VLANs are assigned to the correct interfaces.
 Close configuration window
+
 ## Configure an 802.1Q Trunk Between the Switches
-In Part 3, you will manually configure interface F0/1 as a trunk.
-### 1.Manually configure trunk interface F0/1.
-Open configuration window
+##### In Part 3, you will manually configure interface F0/1 as a trunk.
+#### 1. Manually configure trunk interface F0/1.
+- [x] Open configuration window
 - [x] Change the switchport mode on interface F0/1 to force trunking. Make sure to do this on both switches.
 - [x] As a part of the trunk configuration, set the native VLAN to 8 on both switches. You may see error
 messages temporarily while the two interfaces are configured for different native VLANs.
 - [x] As another part of trunk configuration, specify that VLANs 3, 4, and 8 are only allowed to cross the trunk.
 - [x] Issue the show interfaces trunk command to verify trunking ports, the Native VLAN and allowed VLANs
 across the trunk.
-### 2.Manually configure S1’s trunk interface F0/5
+#### 2. Manually configure S1’s trunk interface F0/5
 - [x] Configure the F0/5 on S1 with the same trunk parameters as F0/1. This is the trunk to the router.
 - [x] Save the running configuration to the startup configuration file on S1 and S2.
 - [x] Issue the show interfaces trunk command to verify trunking.
@@ -109,15 +105,13 @@ assigned. Include a description for each sub-interface.
 - [x] Close configuration window
 > Ответ:
 >> ```Блок кода```
-
 ## Verify Inter-VLAN Routing is Working
-#### 1.Complete the following tests from PC-A. All should be successful.
-Note: You may have to disable the PC firewall for pings to be successful.
+##### 1. Complete the following tests from PC-A. All should be successful.
+###### Note: You may have to disable the PC firewall for pings to be successful.
 - [x] Ping from PC-A to its default gateway.
 - [x] Ping from PC-A to PC-B
 - [x] Ping from PC-A to S2
 > Ответ:
-
-#### 2. Complete the following test from PC-B.
+##### 2. Complete the following test from PC-B.
 - [x]From the command prompt on PC-B, issue the tracert command to the address of PC-A. 
 > Ответ:
