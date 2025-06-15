@@ -2,12 +2,12 @@
 ## "VLAN и маршрутизация между VLAN"
 ![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_1/Pictures_LAB_1/Pict_LAB1)
 
-# Table of Contents
-1. [Example](#example)
-2. [Example2](#example2)
-3. [Third Example](#third-example)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
-## Example
+# *Table of Contents*
+1. [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
+  - [Cable the network as shown in the topology](Cable-the-network-as-shown-in-the-topology)
+3. [Example2](#example2)
+4. [Third Example](#third-example)
+5. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
 ## Example2
 ## Third Example
 ## [Fourth Example](http://www.fourthexample.com)
