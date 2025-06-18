@@ -14,24 +14,52 @@
 - [x] Attach the devices as shown in the topology diagram, and cable as necessary.
 #### 2. Configure basic settings for the router.
 - [x] Console into the router and enable privileged EXEC mode.
-> Пояснение...
 - [x] Enter configuration mode.
->Пояснение
-```
-interface FastEthernet0/5
- switchport trunk allowed vlan 3-4,7
- switchport mode trunk
-```
 - [x] Assign a device name to the router.
+```
+R1(config)#hostname R1
+```
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
 though they were host names.
+```
+R1(config)#no ip domain-lookup
+```
 - [x] Assign class as the privileged EXEC encrypted password.
+```
+R1(config)#enable secret class
+```
 - [x] Assign cisco as the console password and enable login.
+```
+R1(config)#line console 0
+R1(config-line)#password cisco
+R1(config-line)#login
+```
 - [x] Assign cisco as the VTY password and enable login.
+```
+R1(config)#line vty 0 4
+R1(config-line)#password cisco
+R1(config-line)#login
+```
 - [x] Encrypt the plaintext passwords.
+```
+R1(config)#service password-encryption 
+```
 - [x] Create a banner that warns anyone accessing the device that unauthorized access is prohibited.
+```
+R1(config)#banner motd $ Authorized Users Only! $
+```
 - [x] Save the running configuration to the startup configuration file.
+```
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
 - [x] Set the clock on the router.
+```
+R1(config)#clock timezone msk 3
+
+```
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
 ### 3. Configure basic settings for each switch.
 - [x] Open configuration window
