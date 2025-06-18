@@ -10,8 +10,14 @@
     - [Configure PC hosts](#4-configure-pc-hosts)
 - [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
     - [Create VLANs on both switches](#1-create-vlans-on-both-switches)
+    - [Assign VLANs to the correct switch interfaces](#2-assign-vlans-to-the-correct-switch-interfaces)
 - [Configure an 802.1Q Trunk Between the Switches](#configure-an-8021q-trunk-between-the-switches)
+    - [Manually configure trunk interface F0/1](#1-manually-configure-trunk-interface-f01)
+    - [Manually configure S1’s trunk interface F0/5](#2-manually-configure-s1s-trunk-interface-f05)
 - [Configure Inter-VLAN Routing on the Router](#Configure-Inter-VLAN-Routing-on-the-Router)
+- [Verify Inter-VLAN Routing is Working](#verify-inter-vlan-routing-is-working)
+    - [Complete the following tests from PC-A. All should be successful](#1-complete-the-following-tests-from-pc-a-all-should-be-successful)
+    - [Complete the following test from PC-B](#2-complete-the-following-test-from-pc-b)
 
 ## Build the Network and Configure Basic Device Settings
 ##### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
@@ -154,15 +160,50 @@ messages temporarily while the two interfaces are configured for different nativ
 - [x] As another part of trunk configuration, specify that VLANs 3, 4, and 8 are only allowed to cross the trunk.
 - [x] Issue the show interfaces trunk command to verify trunking ports, the Native VLAN and allowed VLANs
 across the trunk.
+> Конфигурация vlan на S1 и S2
+```
+interface FastEthernet0/1
+ switchport mode trunk
+ switchport trunk native vlan 8
+ switchport trunk allowed vlan 3-4,8
+```
 #### 2. Manually configure S1’s trunk interface F0/5
 - [x] Configure the F0/5 on S1 with the same trunk parameters as F0/1. This is the trunk to the router.
+```
+interface FastEthernet0/5
+ switchport access vlan 7
+ switchport trunk native vlan 8
+ switchport trunk allowed vlan 3-4,7-8
+ switchport mode trunk
+```
 - [x] Save the running configuration to the startup configuration file on S1 and S2.
+Сохраняем конфиги на S1 и S2
+```
+copy running-config startup-config
+```
 - [x] Issue the show interfaces trunk command to verify trunking.
+```
+S1#show interfaces trunk 
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      8
+Fa0/5       on           802.1q         trunking      8
+
+Port        Vlans allowed on trunk
+Fa0/1       3-4,8
+Fa0/5       3-4,7-8
+
+Port        Vlans allowed and active in management domain
+Fa0/1       3,4,8
+Fa0/5       3,4,7,8
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/1       3,4,8
+Fa0/5       3,4,7,8
+```
 #### Question:
 - Why does F0/5 not appear in the list of trunks?
-- Type your answers here.
-- Close configuration window
-> Ответ:
+> Интерфей F0/5 порт не будет отоборажаться в выводе команды, если на R1 интерфейс находится в  состоянии "shutdown"
+> В моей конфигурации к этому момент все необходимы настройки были произведены, поэтому вы выводе можно увидеть данный интерфейс
 
 ## Configure Inter-VLAN Routing on the Router
 - [x] Open configuration window
@@ -170,17 +211,48 @@ across the trunk.
 - [x] Configure sub-interfaces for each VLAN as specified in the IP addressing table. All sub-interfaces use
 802.1Q encapsulation. Ensure the sub-interface for the native VLAN does not have an IP address
 assigned. Include a description for each sub-interface.
+```
+interface GigabitEthernet0/0/1.3
+ description MGMT_3
+ encapsulation dot1Q 3
+ ip address 192.168.3.1 255.255.255.0
+!
+interface GigabitEthernet0/0/1.4
+ description Operations_4
+ encapsulation dot1Q 4
+ ip address 192.168.4.1 255.255.255.0
+!
+interface GigabitEthernet0/0/1.7
+ description ParkinLot_7
+ encapsulation dot1Q 7
+ no ip address
+!
+interface GigabitEthernet0/0/1.8
+ description Native_8
+ encapsulation dot1Q 8
+ no ip address
+```
 - [x] Use the show ip interface brief command to verify the sub-interfaces are operational.
+```
+R1#show ip interface brief 
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   unassigned      YES NVRAM  administratively down down 
+GigabitEthernet0/0/1   unassigned      YES NVRAM  up                    up 
+GigabitEthernet0/0/1.3 192.168.3.1     YES manual up                    up 
+GigabitEthernet0/0/1.4 192.168.4.1     YES manual up                    up 
+GigabitEthernet0/0/1.7 unassigned      YES unset  up                    up 
+GigabitEthernet0/0/1.8 unassigned      YES unset  up                    up 
+GigabitEthernet0/0/2   unassigned      YES NVRAM  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+```
 - [x] Close configuration window
-> Ответ:
->> ```Блок кода```
 ## Verify Inter-VLAN Routing is Working
-##### 1. Complete the following tests from PC-A. All should be successful.
+#### 1. Complete the following tests from PC-A. All should be successful.
 ###### Note: You may have to disable the PC firewall for pings to be successful.
 - [x] Ping from PC-A to its default gateway.
 - [x] Ping from PC-A to PC-B
 - [x] Ping from PC-A to S2
 > Ответ:
-##### 2. Complete the following test from PC-B.
+#### 2. Complete the following test from PC-B.
 - [x]From the command prompt on PC-B, issue the tracert command to the address of PC-A. 
 > Ответ:
