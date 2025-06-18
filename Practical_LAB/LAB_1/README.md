@@ -5,7 +5,11 @@
 ## *Table of Contents*
 - [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
     - [Cable the network as show in the topology](#1-cable-the-network-as-show-in-the-topology)
+    - [Configure basic settings for the router](#2-configure-basic-settings-for-the-router)
+    - [Configure basic settings for each switch](#3-configure-basic-settings-for-each-switch)
+    - [Configure PC hosts](#4-configure-pc-hosts)
 - [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
+    - [Create VLANs on both switches](#1-create-vlans-on-both-switches)
 - [Configure an 802.1Q Trunk Between the Switches](#configure-an-8021q-trunk-between-the-switches)
 - [Configure Inter-VLAN Routing on the Router](#Configure-Inter-VLAN-Routing-on-the-Router)
 
@@ -57,13 +61,20 @@ Building configuration...
 [OK]
 ```
 - [x] Set the clock on the router.
->Непонятно как настроить время в CPT
+>Непонятно как настроить время в CPT, кроме timezone и настройки с помощью NTP вариантов нет. 
+>Первый вариант приложил команды для "ручной" настройки времени на Сisco 
 ```
 R1(config)#clock timezone msk 3
-
+R1(config)#clock set 10:30:00 18 june 2025
+```
+>Второй вариант это настроить NTP. NTP при наличии
+```
+R1(config)#clock timezone msk 3
+R1(config)#ntp server 10.10.10.10
 ```
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
-### 3. Configure basic settings for each switch.
+### 3. Configure basic settings for each switch
+>Комманды для свитча S1 и S2 в данной задаче идентичны, поэтому покажу на примере свитча S1
 - [x] Open configuration window
 - [x] Console into the switch and enable privileged EXEC mode.
 - [x] Enter configuration mode.
