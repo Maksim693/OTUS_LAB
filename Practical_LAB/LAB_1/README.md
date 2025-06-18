@@ -4,6 +4,7 @@
 
 ## *Table of Contents*
 - [Build the Network and Configure Basic Device Settings](#Build-the-Network-and-Configure-Basic-Device-Settings)
+    - [Cable the network as show in the topology](#1-cable-the-network-as-show-in-the-topology)
 - [Create VLANs and Assign Switch Ports](#Create-VLANs-and-Assign-Switch-Ports)
 - [Configure an 802.1Q Trunk Between the Switches](#configure-an-8021q-trunk-between-the-switches)
 - [Configure Inter-VLAN Routing on the Router](#Configure-Inter-VLAN-Routing-on-the-Router)
@@ -56,6 +57,7 @@ Building configuration...
 [OK]
 ```
 - [x] Set the clock on the router.
+>Непонятно как настроить время в CPT
 ```
 R1(config)#clock timezone msk 3
 
