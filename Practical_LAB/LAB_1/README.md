@@ -18,6 +18,8 @@
 - [Verify Inter-VLAN Routing is Working](#verify-inter-vlan-routing-is-working)
     - [Complete the following tests from PC-A. All should be successful](#1-complete-the-following-tests-from-pc-a-all-should-be-successful)
     - [Complete the following test from PC-B](#2-complete-the-following-test-from-pc-b)
+ 
+- [Итоговая конфигурация (CPT)](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_1/CPT-LAB1.pkt)
 
 ## Build the Network and Configure Basic Device Settings
 ##### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
@@ -81,7 +83,7 @@ R1(config)#ntp server 10.10.10.10
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
 #### 3. Configure basic settings for each switch
 >Дальнейшие команды для свитчей S1 и S2 идентичны настройкам на маршрутизатору R1, поэтому отмечу выполнения данных пуктов.
->Итоговую конфигурацию можно посмотреть в [Приложения](#ссылка)
+>Итоговую конфигурацию можно скачать по ссылке: <https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_1/CPT-LAB1.pkt>
 - [x] Open configuration window
 - [x] Console into the switch and enable privileged EXEC mode.
 - [x] Enter configuration mode.
@@ -298,7 +300,7 @@ Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 0ms, Average = 0ms
 ```
 #### 2. Complete the following test from PC-B.
-- [x]From the command prompt on PC-B, issue the tracert command to the address of PC-A.
+- [x] From the command prompt on PC-B, issue the tracert command to the address of PC-A.
 ```
 C:\>tracert 192.168.3.3
 
