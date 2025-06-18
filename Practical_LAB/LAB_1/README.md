@@ -67,14 +67,15 @@ Building configuration...
 R1(config)#clock timezone msk 3
 R1(config)#clock set 10:30:00 18 june 2025
 ```
->Второй вариант это настроить NTP. NTP при наличии
+>Второй вариант это настроить NTP.
 ```
 R1(config)#clock timezone msk 3
 R1(config)#ntp server 10.10.10.10
 ```
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
-### 3. Configure basic settings for each switch
->Комманды для свитча S1 и S2 в данной задаче идентичны, поэтому покажу на примере свитча S1
+#### 3. Configure basic settings for each switch
+>Дальнейшие команды для свитчей S1 и S2 идентичны настройкам на маршрутизатору R1, поэтому отмечу выполнения данных пуктов.
+>Итоговую конфигурацию можно посмотреть в [Приложения](#ссылка)
 - [x] Open configuration window
 - [x] Console into the switch and enable privileged EXEC mode.
 - [x] Enter configuration mode.
@@ -91,16 +92,10 @@ though they were host names.
 command.
 - [x] Copy the running configuration to the startup configuration.
 - [x] Close configuration window
->Ответ:
-```
-Блок кода
-```
-### 4. Configure PC hosts.
+#### 4. Configure PC hosts.
 - [x] Refer to the Addressing Table for PC host address information.
->Ответ:
-```
-Блок кода
-```
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_1/Pictures_LAB_1/Pict_LAB1_PC)
+
 ## Create VLANs and Assign Switch Ports
 ##### In Part 2, you will create VLANs, as specified in the table above, on both switches. You will then assign the VLANs to the appropriate interface. The show vlan command is used to verify your configuration settings. Complete the following tasks on each switch.
 #### 1. Create VLANs on both switches.
@@ -115,7 +110,40 @@ and administratively deactivate them.
 static access mode. Be sure to do this on both switches
 - [x] Issue the show vlan brief command and verify that the VLANs are assigned to the correct interfaces.
 Close configuration window
+> Конфигурация vlan на S1
+```
+S1#show vlan 
 
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+3    MGMT_3                           active    Fa0/6
+4    Operatinons_4                    active    
+7    ParkingLot_7                     active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10
+                                                Fa0/11, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23, Fa0/24, Gig0/1, Gig0/2
+8    Native_8                         active  
+```
+> Конфигурация vlan на S2
+```
+S2#show vlan 
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+3    MGMT_3                           active    
+4    Operatinons_4                    active    Fa0/18
+7    ParkingLot_7                     active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/11, Fa0/12, Fa0/13
+                                                Fa0/14, Fa0/15, Fa0/16, Fa0/17
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23, Fa0/24, Gig0/1, Gig0/2
+8    Native_8                         active  
+```
 ## Configure an 802.1Q Trunk Between the Switches
 ##### In Part 3, you will manually configure interface F0/1 as a trunk.
 #### 1. Manually configure trunk interface F0/1.
