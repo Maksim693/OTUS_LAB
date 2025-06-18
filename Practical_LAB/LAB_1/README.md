@@ -250,9 +250,62 @@ Vlan1                  unassigned      YES unset  administratively down down
 #### 1. Complete the following tests from PC-A. All should be successful.
 ###### Note: You may have to disable the PC firewall for pings to be successful.
 - [x] Ping from PC-A to its default gateway.
+```
+C:\>ping 192.168.3.1
+
+Pinging 192.168.3.1 with 32 bytes of data:
+
+Reply from 192.168.3.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.1: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.3.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
 - [x] Ping from PC-A to PC-B
+```
+C:\>ping 192.168.4.3
+
+Pinging 192.168.4.3 with 32 bytes of data:
+
+Reply from 192.168.4.3: bytes=32 time<1ms TTL=127
+Reply from 192.168.4.3: bytes=32 time=4ms TTL=127
+Reply from 192.168.4.3: bytes=32 time<1ms TTL=127
+Reply from 192.168.4.3: bytes=32 time<1ms TTL=127
+
+Ping statistics for 192.168.4.3:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 4ms, Average = 1ms
+```
 - [x] Ping from PC-A to S2
-> Ответ:
+```
+C:\>ping 192.168.3.12
+
+Pinging 192.168.3.12 with 32 bytes of data:
+
+Reply from 192.168.3.12: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.12: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.12: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.12: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.3.12:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
 #### 2. Complete the following test from PC-B.
-- [x]From the command prompt on PC-B, issue the tracert command to the address of PC-A. 
-> Ответ:
+- [x]From the command prompt on PC-B, issue the tracert command to the address of PC-A.
+```
+C:\>tracert 192.168.3.3
+
+Tracing route to 192.168.3.3 over a maximum of 30 hops: 
+
+  1   0 ms      0 ms      0 ms      192.168.4.1
+  2   0 ms      0 ms      0 ms      192.168.3.3
+
+Trace complete.
+```
