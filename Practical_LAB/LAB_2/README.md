@@ -1,2 +1,85 @@
 # Практическая работа №2
 ## "Развертывание коммутируемой сети с резервными каналами"
+#### Подробную информацию условиям практической работы можно посмотреть в файле - ["Техническое задание"](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_2/3.1.2.12_Lab___Building_a_Switched_Network_with_Redundant_Links.pdf)
+
+## *Table of Contents*
+- [Создание сети и настройка основных параметров устройства]()
+- [Определение корневого моста]()
+- [Наблюдение за процессом выбора протоколом STP порта, исходя из стоимости портов]()
+- [Наблюдение за процессом выбора протоколом STP порта, исходя из приоритета портов]()
+- [Вопросы для повторения]()
+
+- [Итоговая конфигурация (CPT)]()
+  
+## Создание сети и настройка основных параметров устройства
+##### В части 1 вам предстоит настроить топологию сети и основные параметры маршрутизаторов.
+#### Шаг 1:	Создайте сеть согласно топологии.
+Подключите устройства, как показано в топологии, и подсоедините необходимые кабели.
+#### Шаг 2:	Выполните инициализацию и перезагрузку коммутаторов.
+#### Шаг 3:	Настройте базовые параметры каждого коммутатора.
+> Настройка будет показана на примере свитча S1. На свитчах S2 и S3 конфигурация будет идентична.
+- [x] Отключите поиск DNS.
+- [x] Присвойте имена устройствам в соответствии с топологией.
+- [x] Назначьте class в качестве зашифрованного пароля доступа к привилегированному режиму.
+- [x] Назначьте cisco в качестве паролей консоли и VTY и активируйте вход для консоли и VTY каналов.
+- [x] Настройте logging synchronous для консольного канала.
+- [x] Настройте баннерное сообщение дня (MOTD) для предупреждения пользователей о запрете несанкционированного доступа.
+```
+S1(config)#hostname S1
+S1(config)service password-encryption
+S1(config)enable secret class
+S1(config)clock timezone msk 3
+S1(config)no ip domain-lookup
+S1(config)banner motd ^C Authorized Users Only! ^C
+S1(config)line con 0
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config)line vty 0 4
+S1(config-line)#password cisco
+S1(config-line)#login
+S1#copy running-config startup-config 
+```
+- [x] Задайте IP-адрес, указанный в таблице адресации для VLAN 1 на всех коммутаторах.
+```
+interface Vlan1
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+```
+- [x] Скопируйте текущую конфигурацию в файл загрузочной конфигурации.
+```
+S1#copy running-config st
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+#### Шаг 4:	Проверьте связь.
+##### Проверьте способность компьютеров обмениваться эхо-запросами.
+- [x] Успешно ли выполняется эхо-запрос от коммутатора S1 на коммутатор S2?
+```
+S1#ping 192.168.1.2
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/1/7 ms
+```
+- [x] Успешно ли выполняется эхо-запрос от коммутатора S1 на коммутатор S3?
+```
+S1#ping 192.168.1.3
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+```
+- [x] Успешно ли выполняется эхо-запрос от коммутатора S2 на коммутатор S3?
+```
+S2#ping 192.168.1.3
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+```
+##### Выполняйте отладку до тех пор, пока ответы на все вопросы не будут положительными.
