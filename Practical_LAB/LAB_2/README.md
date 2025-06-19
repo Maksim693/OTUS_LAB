@@ -26,24 +26,24 @@
 - [x] Настройте баннерное сообщение дня (MOTD) для предупреждения пользователей о запрете несанкционированного доступа.
 ```
 S1(config)#hostname S1
-S1(config)service password-encryption
-S1(config)enable secret class
-S1(config)clock timezone msk 3
-S1(config)no ip domain-lookup
-S1(config)banner motd ^C Authorized Users Only! ^C
-S1(config)line con 0
+S1(config)#service password-encryption
+S1(config)#enable secret class
+S1(config)#clock timezone msk 3
+S1(config)#no ip domain-lookup
+S1(config)#banner motd ^C Authorized Users Only! ^C
+S1(config)#line con 0
 S1(config-line)#password cisco
 S1(config-line)#login
-S1(config)line vty 0 4
+S1(config)#line vty 0 4
 S1(config-line)#password cisco
 S1(config-line)#login
 S1#copy running-config startup-config 
 ```
 - [x] Задайте IP-адрес, указанный в таблице адресации для VLAN 1 на всех коммутаторах.
 ```
-interface Vlan1
- ip address 192.168.1.1 255.255.255.0
- no shutdown
+S1(config)#interface Vlan1
+S1(config-if)#ip address 192.168.1.1 255.255.255.0
+S1(config-if)#no shutdown
 ```
 - [x] Скопируйте текущую конфигурацию в файл загрузочной конфигурации.
 ```
