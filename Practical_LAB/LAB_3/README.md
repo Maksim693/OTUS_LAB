@@ -29,6 +29,7 @@
   <details>
     <summary> Step 3: Configure basic settings for each router. </summary>
     
+#### Подзаголовок
 - [x] Assign a device name to the router.
 - [x] Open configuration window
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
@@ -43,14 +44,16 @@
   </details>      
   <details>
     <summary> Step 4: Configure Inter-VLAN Routing on R1 </summary>
-    
+
+#### Подзаголовок  
 - [x] Activate interface G0/0/1 on the router.
 - [x] Configure sub-interfaces for each VLAN as required by the IP addressing table. All sub-interfaces use 802.1Q encapsulation and are assigned the first usable address from the IP address pool you have calculated. Ensure the sub-interface for the native VLAN does not have an IP address assigned. Include a description for each sub-interface.
 - [x] Verify the sub-interfaces are operational.
   </details>      
   <details>
     <summary> Step 5: Configure G0/0/1 on R2, then G0/0/0 and static routing for both routers </summary>
-    
+
+#### Подзаголовок    
 - [x] Configure G0/0/1 on R2 with the first IP address of Subnet C you calculated earlier.
 - [x] Configure interface G0/0/0 for each router based on the IP Addressing table above.
 - [x] Configure a default route on each router pointed to the IP address of G0/0/0 on the other router.
@@ -60,7 +63,8 @@
   </details>      
   <details>
     <summary> Step 6: Configure basic settings for each switch. </summary>
-    
+
+#### Подзаголовок
 - [x] Assign a device name to the switch.
 - [x] Open configuration window
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
@@ -76,7 +80,7 @@
   </details>      
   <details>
     <summary> Step 7: Create VLANs on S1. </summary>
-    
+   
 ###### Note: S2 is only configured with basic settings.
 - [x] Create and name the required VLANs on switch 1 from the table above.
 - [x] Configure and activate the management interface on S1 (VLAN 200) using the second IP address from the subnet calculated earlier. Additionally, set the default gateway on S1.
@@ -129,12 +133,15 @@
   </details>      
   <details>
     <summary> Step 2: Save your configuration </summary>
-    
+  
+ #### Подзаголовок   
 - [x] Save the running configuration to the startup configuration file.
 - [x] Close configuration window
   </details>      
   <details>
     <summary> Step 3: Verify the DHCPv4 Server configuration </summary>
+
+#### Подзаголовок
 - [x] Issue the command show ip dhcp pool to examine the pool details.
 - [x] Issue the command show ip dhcp bindings to examine established DHCP address assignments.
 - [x] Issue the command show ip dhcp server statistics to examine DHCP messages.
@@ -142,6 +149,7 @@
   <details>
     <summary> Step 4: Attempt to acquire an IP address from DHCP on PC-A </summary>
     
+#### Подзаголовок    
 - [x] Open a command prompt on PC-A and issue the command ipconfig /renew.
 - [x] Once the renewal process is complete, issue the command ipconfig to view the new IP information.
 - [x] Test connectivity by pinging R1’s G0/0/1 interface IP address.
@@ -155,6 +163,7 @@
   <details>
     <summary> Step 1: Configure R2 as a DHCP relay agent for the LAN on G0/0/1 </summary>
     
+#### Подзаголовок    
 - [x] Configure the ip helper-address command on G0/0/1 specifying R1’s G0/0/0 IP address.
 - [x] Open configuration window
 - [x] Save your configuration.
@@ -162,7 +171,8 @@
   </details>      
   <details>
     <summary> Step 2: Attempt to acquire an IP address from DHCP on PC-B </summary>
-    
+
+#### Подзаголовок    
 - [x] Open a command prompt on PC-B and issue the command ipconfig /renew.
 - [x] Once the renewal process is complete, issue the command ipconfig to view the new IP information.
 - [x] Test connectivity by pinging R1’s G0/0/1 interface IP address.
