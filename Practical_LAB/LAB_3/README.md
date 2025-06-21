@@ -9,17 +9,23 @@
     
 ##### Subnet the network 192.168.1.0/24 to meet the following requirements:
 - [x] One subnet, “Subnet A”, supporting 58 hosts (the client VLAN at R1).
-##### Subnet A:
-##### Type your answers here.
-##### Record the first IP address in the Addressing Table for R1 G0/0/1.100. 
+###### Record the first IP address in the Addressing Table for R1 G0/0/1.100.
+| Device | Interface | IP Address | Subnet Mask | Default Gateway |
+| :-:| :-----------| :-------------| :---------------| :--:|
+| R1 | G0/0/1.100 | 192.168.100.1 | 255.255.255.192 | N/A |
+| R2 | G0/0/1.100 | 192.168.100.1 | 255.255.255.192 | N/A |
 - [x] One subnet, “Subnet B”, supporting 28 hosts (the management VLAN at R1). 
-##### Subnet B:
-##### Type your answers here.
-##### Record the first IP address in the Addressing Table for R1 G0/0/1.200. Record the second IP address in the Address Table for S1 VLAN 200 and enter the associated default gateway.
+###### Record the first IP address in the Addressing Table for R1 G0/0/1.200. Record the second IP address in the Address Table for S1 VLAN 200 and enter the associated default gateway.
+| Device | Interface | IP Address | Subnet Mask | Default Gateway |
+| :-:| :-----------| :-------------| :---------------| :--:|
+| R1 | G0/0/1.100 | 192.168.100.1 | 255.255.255.192 | N/A |
+| R2 | G0/0/1.100 | 192.168.100.1 | 255.255.255.192 | N/A |
 - [x] One subnet, “Subnet C”, supporting 12 hosts (the client network at R2).
-##### Subnet C:
-##### Type your answers here.
-##### Record the first IP address in the Addressing Table for R2 G0/0/1.
+###### Record the first IP address in the Addressing Table for R2 G0/0/1.
+| Device | Interface | IP Address | Subnet Mask | Default Gateway |
+| :-:| :-----------| :-------------| :---------------| :--:|
+| R1 | G0/0/1.100 | 192.168.100.1 | 255.255.255.192 | N/A |
+| R2 | G0/0/1.100 | 192.168.100.1 | 255.255.255.192 | N/A |
   </details>
   <details>
     <summary> Step 2: Cable the network as shown in the topology. </summary>
