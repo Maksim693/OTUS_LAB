@@ -40,20 +40,27 @@
 - [x] Save the running configuration to the startup configuration file.
 - [x] Set the clock on the router to today’s time and date.
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
-  </details> 
-  
-#### Step 4: Configure Inter-VLAN Routing on R1
+  </details>      
+  <details>
+    <summary> Step 4: Configure Inter-VLAN Routing on R1 </summary>
+    
 - [x] Activate interface G0/0/1 on the router.
 - [x] Configure sub-interfaces for each VLAN as required by the IP addressing table. All sub-interfaces use 802.1Q encapsulation and are assigned the first usable address from the IP address pool you have calculated. Ensure the sub-interface for the native VLAN does not have an IP address assigned. Include a description for each sub-interface.
 - [x] Verify the sub-interfaces are operational.
-#### Step 5: Configure G0/0/1 on R2, then G0/0/0 and static routing for both routers
+  </details>      
+  <details>
+    <summary> Step 5: Configure G0/0/1 on R2, then G0/0/0 and static routing for both routers </summary>
+    
 - [x] Configure G0/0/1 on R2 with the first IP address of Subnet C you calculated earlier.
 - [x] Configure interface G0/0/0 for each router based on the IP Addressing table above.
 - [x] Configure a default route on each router pointed to the IP address of G0/0/0 on the other router.
 - [x] Verify static routing is working by pinging R2’s G0/0/1 address from R1.
 - [x] Save the running configuration to the startup configuration file.
 - [x] Close configuration window
-#### Step 6: Configure basic settings for each switch.
+  </details>      
+  <details>
+    <summary> Step 6: Configure basic settings for each switch. </summary>
+    
 - [x] Assign a device name to the switch.
 - [x] Open configuration window
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
@@ -66,7 +73,10 @@
 - [x] Set the clock on the switch to today’s time and date.
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
 - [x] Copy the running configuration to the startup configuration.
-#### Step 7: Create VLANs on S1.
+  </details>      
+  <details>
+    <summary> Step 7: Create VLANs on S1. </summary>
+    
 ###### Note: S2 is only configured with basic settings.
 - [x] Create and name the required VLANs on switch 1 from the table above.
 - [x] Configure and activate the management interface on S1 (VLAN 200) using the second IP address from the subnet calculated earlier. Additionally, set the default gateway on S1.
@@ -76,14 +86,20 @@
 - [x] Close configuration window
 - [x] Open configuration window
 - [x] Close configuration window
-#### Step 8: Assign VLANs to the correct switch interfaces.
+  </details>      
+  <details>
+    <summary> Step 8: Assign VLANs to the correct switch interfaces. </summary>
+    
 - [x] Assign used ports to the appropriate VLAN (specified in the VLAN table above) and configure them for static access mode.
 - [x] Open configuration window
 - [x] Verify that the VLANs are assigned to the correct interfaces.
 #### Question:
 - Why is interface F0/5 listed under VLAN 1?
 >
-#### Step 9: Manually configure S1’s interface F0/5 as an 802.1Q trunk.
+  </details>      
+  <details>
+    <summary> Step 9: Manually configure S1’s interface F0/5 as an 802.1Q trunk. </summary>
+    
 - [x] Change the switchport mode on the interface to force trunking.
 - [x] As a part of the trunk configuration, set the native VLAN to 1000.
 - [x] As another part of trunk configuration, specify that VLANs 100, 200, and 1000 are allowed to cross the trunk.
@@ -92,13 +108,16 @@
 #### Question:
 - At this point, what IP address would the PC’s have if they were connected to the network using DHCP?
 > Close configuration window
+  </details>
 </details>
 
 <details>
   <summary> Part 2: Configure and verify two DHCPv4 Servers on R1 </summary>
   
-### In Part 2, you will configure and verify a DHCPv4 Server on R1. The DHCPv4 server will service two subnets, Subnet A and Subnet C.
-#### Step 1: Configure R1 with DHCPv4 pools for the two supported subnets. Only the DHCP Pool for subnet A is given below
+### In Part 2, you will configure and verify a DHCPv4 Server on R1. The DHCPv4 server will service two subnets, Subnet A and Subnet C.   
+  <details>
+    <summary> Step 1: Configure R1 with DHCPv4 pools for the two supported subnets. Only the DHCP Pool for subnet A is given below </summary>
+    
 - [x] Exclude the first five useable addresses from each address pool.
 - [x] Open configuration window
 - [x] Create the DHCP pool (Use a unique name for each pool).
@@ -107,28 +126,43 @@
 - [x] Configure the appropriate default gateway for each DHCP pool.
 - [x] Configure the lease time for 2 days 12 hours and 30 minutes.
 - [x] Next, configure the second DHCPv4 Pool using the pool name R2_Client_LAN and the calculated network, default-router and use the same domain name and lease time from the previous DHCP pool.
-#### Step 2: Save your configuration
+  </details>      
+  <details>
+    <summary> Step 2: Save your configuration </summary>
+    
 - [x] Save the running configuration to the startup configuration file.
 - [x] Close configuration window
-#### Step 3: Verify the DHCPv4 Server configuration
+  </details>      
+  <details>
+    <summary> Step 3: Verify the DHCPv4 Server configuration </summary>
 - [x] Issue the command show ip dhcp pool to examine the pool details.
 - [x] Issue the command show ip dhcp bindings to examine established DHCP address assignments.
 - [x] Issue the command show ip dhcp server statistics to examine DHCP messages.
-#### Step 4: Attempt to acquire an IP address from DHCP on PC-A
+  </details>      
+  <details>
+    <summary> Step 4: Attempt to acquire an IP address from DHCP on PC-A </summary>
+    
 - [x] Open a command prompt on PC-A and issue the command ipconfig /renew.
 - [x] Once the renewal process is complete, issue the command ipconfig to view the new IP information.
 - [x] Test connectivity by pinging R1’s G0/0/1 interface IP address.
+  </details>
 </details>
 
 <details>
   <summary> Part 3: Configure and verify a DHCP Relay on R2 </summary>
-### In Part 3, you will configure R2 to relay DHCP requests from the local area network on interface G0/0/1 to the DHCP server (R1). 
-#### Step 1: Configure R2 as a DHCP relay agent for the LAN on G0/0/1
+  
+### In Part 3, you will configure R2 to relay DHCP requests from the local area network on interface G0/0/1 to the DHCP server (R1).      
+  <details>
+    <summary> Step 1: Configure R2 as a DHCP relay agent for the LAN on G0/0/1 </summary>
+    
 - [x] Configure the ip helper-address command on G0/0/1 specifying R1’s G0/0/0 IP address.
 - [x] Open configuration window
 - [x] Save your configuration.
 - [x] Close configuration window
-#### Step 2: Attempt to acquire an IP address from DHCP on PC-B
+  </details>      
+  <details>
+    <summary> Step 2: Attempt to acquire an IP address from DHCP on PC-B </summary>
+    
 - [x] Open a command prompt on PC-B and issue the command ipconfig /renew.
 - [x] Once the renewal process is complete, issue the command ipconfig to view the new IP information.
 - [x] Test connectivity by pinging R1’s G0/0/1 interface IP address.
