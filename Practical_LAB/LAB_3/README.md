@@ -1,5 +1,5 @@
 # Практическая работа №3
-## "Lab - Implement DHCPv4"
+## "Implement DHCPv4"
 <details>
   <summary> Part 1: Build the Network and Configure Basic Device Settings </summary>
   
