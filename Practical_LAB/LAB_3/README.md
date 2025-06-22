@@ -22,8 +22,8 @@
 - [x] One subnet, “Subnet C”, supporting 12 hosts (the client network at R2).
 ###### Record the first IP address in the Addressing Table for R2 G0/0/1.
 | Device | Interface | IP Address | Subnet Mask | Default Gateway |
-| :-:| :----------| :------------| :---------------| :--:|
-| R2 | G0/0/1.100 | 192.168.1.64 | 255.255.255.240 | N/A |
+| :-:| :----------| :--------------| :---------------| :--:|
+| R2 | G0/0/1.100 | 192.168.100.65 | 255.255.255.240 | N/A |
   </details>
   <details>
     <summary> Step 2: Cable the network as shown in the topology. </summary>
@@ -53,22 +53,69 @@
 - [x] Activate interface G0/0/1 on the router.
 - [x] Configure sub-interfaces for each VLAN as required by the IP addressing table. All sub-interfaces use 802.1Q encapsulation and are assigned the first usable address from the IP address pool you have calculated. Ensure the sub-interface for the native VLAN does not have an IP address assigned. Include a description for each sub-interface.
 - [x] Verify the sub-interfaces are operational.
+```
+interface GigabitEthernet0/0/1.100
+ description Clients_100
+ encapsulation dot1Q 100
+ ip address 192.168.100.1 255.255.255.192
+!
+interface GigabitEthernet0/0/1.200
+ description MGMT_200
+ encapsulation dot1Q 200
+ ip address 192.168.200.1 255.255.255.224
+!
+interface GigabitEthernet0/0/1.999
+ description Parking_Lot_999
+ encapsulation dot1Q 999
+!
+interface GigabitEthernet0/0/1.1000
+ description Native_1000
+ encapsulation dot1Q 1000
+```
   </details>      
   <details>
     <summary> Step 5: Configure G0/0/1 on R2, then G0/0/0 and static routing for both routers </summary>
 
 #### Подзаголовок    
 - [x] Configure G0/0/1 on R2 with the first IP address of Subnet C you calculated earlier.
+```
+interface GigabitEthernet0/0/1.100
+ description Clients_100
+ encapsulation dot1Q 100
+ ip address 192.168.100.65 255.255.255.240
+```
 - [x] Configure interface G0/0/0 for each router based on the IP Addressing table above.
+```
+interface GigabitEthernet0/0/0
+ ip address 10.0.0.2 255.255.255.252
+ duplex auto
+ speed auto
+```
 - [x] Configure a default route on each router pointed to the IP address of G0/0/0 on the other router.
+```
+ip route 0.0.0.0 0.0.0.0 10.0.0.1 
+```
 - [x] Verify static routing is working by pinging R2’s G0/0/1 address from R1.
+```
+R2#ping 192.168.100.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.100.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+```
 - [x] Save the running configuration to the startup configuration file.
-- [x] Close configuration window
+```
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
   </details>      
   <details>
     <summary> Step 6: Configure basic settings for each switch. </summary>
 
-#### Подзаголовок
+> Настройка аналогично 3 шагу.
 - [x] Assign a device name to the switch.
 - [x] Open configuration window
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
@@ -87,7 +134,32 @@
    
 ###### Note: S2 is only configured with basic settings.
 - [x] Create and name the required VLANs on switch 1 from the table above.
+```
+S1#show interfaces trunk 
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/5       on           802.1q         trunking      1000
+
+Port        Vlans allowed on trunk
+Fa0/5       100,200,999-1000
+```
+```
+S1show vlan 
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+100  Clients_100                      active    Fa0/6
+200  MGMT_200                         active    
+999  Parking_Lot_999                  active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10
+                                                Fa0/11, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23, Fa0/24, Gig0/1, Gig0/2
+```
 - [x] Configure and activate the management interface on S1 (VLAN 200) using the second IP address from the subnet calculated earlier. Additionally, set the default gateway on S1.
+interface Vlan200
+ ip address 192.168.200.2 255.255.255.224
 - [x] Configure and activate the management interface on S2 (VLAN 1) using the second IP address from the subnet calculated earlier. Additionally, set the default gateway on S2
 - [x] Assign all unused ports on S1 to the Parking_Lot VLAN, configure them for static access mode, and administratively deactivate them. On S2, administratively deactivate all the unused ports.
 ###### Note: The interface range command is helpful to accomplish this task with as few commands as necessary.
