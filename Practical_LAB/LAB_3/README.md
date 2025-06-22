@@ -158,11 +158,23 @@ VLAN Name                             Status    Ports
                                                 Fa0/23, Fa0/24, Gig0/1, Gig0/2
 ```
 - [x] Configure and activate the management interface on S1 (VLAN 200) using the second IP address from the subnet calculated earlier. Additionally, set the default gateway on S1.
+```
 interface Vlan200
  ip address 192.168.200.2 255.255.255.224
+```
 - [x] Configure and activate the management interface on S2 (VLAN 1) using the second IP address from the subnet calculated earlier. Additionally, set the default gateway on S2
+```
+S1(config)#interface range Fa0/1-4,Fa0/7-24,Gi0/1-2
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown
+```
 - [x] Assign all unused ports on S1 to the Parking_Lot VLAN, configure them for static access mode, and administratively deactivate them. On S2, administratively deactivate all the unused ports.
 ###### Note: The interface range command is helpful to accomplish this task with as few commands as necessary.
+```
+S1(config)#interface range Fa0/1-4,Fa0/7-24,Gi0/1-2
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown
+```
 - [x] Close configuration window
 - [x] Open configuration window
 - [x] Close configuration window
