@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c6ac2e26-d836-49c0-b220-bdf4388acd9e)# Практическая работа №3
+# Практическая работа №3
 ## "Implement DHCPv4"
 <details>
   <summary> Part 1: Build the Network and Configure Basic Device Settings </summary>
@@ -432,7 +432,7 @@ R2(config-if)# ip helper-address 10.0.0.1
   <details>
     <summary> Step 2: Attempt to acquire an IP address from DHCP on PC-B </summary>
 
-#### Подзаголовок    
+##### Проводим проверки согласно 2 шагу    
 - [x] Open a command prompt on PC-B and issue the command ipconfig /renew.
 ![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/Pictures_LAB_3/Pict_LAB3_PC-B.png)
 - [x] Once the renewal process is complete, issue the command ipconfig to view the new IP information.
