@@ -1,4 +1,4 @@
-# Практическая работа №3
+![image](https://github.com/user-attachments/assets/c6ac2e26-d836-49c0-b220-bdf4388acd9e)# Практическая работа №3
 ## "Implement DHCPv4"
 <details>
   <summary> Part 1: Build the Network and Configure Basic Device Settings </summary>
@@ -289,37 +289,128 @@ Fa0/5       100,200,1000
   <details>
     <summary> Step 1: Configure R1 with DHCPv4 pools for the two supported subnets. Only the DHCP Pool for subnet A is given below </summary>
 
-##### Проводим настройку оборудования аналогично [Шагу №3](#проводим-базовую-настройку-оборудования)
+#### Приступаем к настройке DHCP сервера
 - [x] Exclude the first five useable addresses from each address pool.
-- [x] Open configuration window
+```
+R1(config)#ip dhcp excluded-address 192.168.100.1 192.168.100.5
+```
 - [x] Create the DHCP pool (Use a unique name for each pool).
+```
+R1(config)#ip dhcp pool Client_DHCP_R1
+```
 - [x] Specify the network that this DHCP server is supporting.
+```
+R1(dhcp-config)#network 192.168.100.0 255.255.255.192
+```
 - [x] Configure the domain name as ccna-lab.com
+```
+R1(dhcp-config)#domain-name ccna-lab.comip d  
+```
 - [x] Configure the appropriate default gateway for each DHCP pool.
+```
+R1(dhcp-config)#default-router 192.168.100.1
+```
 - [x] Configure the lease time for 2 days 12 hours and 30 minutes.
+```
+lease 2 12 30
+```
 - [x] Next, configure the second DHCPv4 Pool using the pool name R2_Client_LAN and the calculated network, default-router and use the same domain name and lease time from the previous DHCP pool.
+```
+R1(config)# ip dhcp excluded-address 192.168.100.65 192.168.100.69
+R1(config)# ip dhcp pool R2_Client_LAN
+R1(dhcp-config)# network 192.168.100.64 255.255.255.240
+R1(dhcp-config)# default-router 192.168.100.65
+R1(dhcp-config)# domain-name ccna-lab.com
+R1(dhcp-config)# lease 2 12 30
+```
   </details>      
   <details>
     <summary> Step 2: Save your configuration </summary>
   
 ##### Сохраняем настройки
 - [x] Save the running configuration to the startup configuration file.
+```
+copy running-config startup-config 
+```
   </details>      
   <details>
     <summary> Step 3: Verify the DHCPv4 Server configuration </summary>
 
 #### Приступаем к настройке DHCP сервера
 - [x] Issue the command show ip dhcp pool to examine the pool details.
+```
+R1#show ip dhcp pool 
+
+Pool Client_DHCP_R1 :
+ Utilization mark (high/low)    : 100 / 0
+ Subnet size (first/next)       : 0 / 0 
+ Total addresses                : 62
+ Leased addresses               : 1
+ Excluded addresses             : 2
+ Pending event                  : none
+
+ 1 subnet is currently in the pool
+ Current index        IP address range                    Leased/Excluded/Total
+ 192.168.100.1        192.168.100.1    - 192.168.100.62    1    / 2     / 62
+
+Pool R2_Client_LAN :
+ Utilization mark (high/low)    : 100 / 0
+ Subnet size (first/next)       : 0 / 0 
+ Total addresses                : 14
+ Leased addresses               : 0
+ Excluded addresses             : 2
+ Pending event                  : none
+
+ 1 subnet is currently in the pool
+ Current index        IP address range                    Leased/Excluded/Total
+ 192.168.100.65       192.168.100.65   - 192.168.100.78    0    / 2     / 14
+```
 - [x] Issue the command show ip dhcp bindings to examine established DHCP address assignments.
+```
+R1# show ip dhcp binding 
+IP address       Client-ID/              Lease expiration        Type
+                 Hardware address
+192.168.100.6    0001.9703.86A8           --                     Automatic
+```
 - [x] Issue the command show ip dhcp server statistics to examine DHCP messages.
+> Данная команда не работает на маршрутизаторе 4331 в CPT
   </details>      
   <details>
     <summary> Step 4: Attempt to acquire an IP address from DHCP on PC-A </summary>
     
-#### Подзаголовок    
+##### Проводим проверки согласно 4 шагу    
 - [x] Open a command prompt on PC-A and issue the command ipconfig /renew.
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/Pictures_LAB_3/Pict_LAB3_PC-A.png)
 - [x] Once the renewal process is complete, issue the command ipconfig to view the new IP information.
+```
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::201:97FF:FE03:86A8
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.100.6
+   Subnet Mask.....................: 255.255.255.192
+   Default Gateway.................: ::
+                                     0.0.0.0
+```
 - [x] Test connectivity by pinging R1’s G0/0/1 interface IP address.
+```
+C:\>ping 192.168.100.1
+
+Pinging 192.168.100.1 with 32 bytes of data:
+
+Reply from 192.168.100.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.100.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.100.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.100.1: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.100.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
   </details>
 </details>
 
@@ -330,19 +421,58 @@ Fa0/5       100,200,1000
   <details>
     <summary> Step 1: Configure R2 as a DHCP relay agent for the LAN on G0/0/1 </summary>
     
-#### Подзаголовок    
+#### Переходим к настройки DHCP Relay    
 - [x] Configure the ip helper-address command on G0/0/1 specifying R1’s G0/0/0 IP address.
-- [x] Open configuration window
+```
+R2(config)# interface g0/0/1
+R2(config-if)# ip helper-address 10.0.0.1
+```
 - [x] Save your configuration.
-- [x] Close configuration window
   </details>      
   <details>
     <summary> Step 2: Attempt to acquire an IP address from DHCP on PC-B </summary>
 
 #### Подзаголовок    
 - [x] Open a command prompt on PC-B and issue the command ipconfig /renew.
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/Pictures_LAB_3/Pict_LAB3_PC-B.png)
 - [x] Once the renewal process is complete, issue the command ipconfig to view the new IP information.
+```
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: ccna-lab.com
+   Link-local IPv6 Address.........: FE80::290:21FF:FE4E:9A4C
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.100.70
+   Subnet Mask.....................: 255.255.255.240
+   Default Gateway.................: ::
+                                     192.168.100.65
+```
 - [x] Test connectivity by pinging R1’s G0/0/1 interface IP address.
+```
+C:\>ping 192.168.100.1
+
+Pinging 192.168.100.1 with 32 bytes of data:
+
+Reply from 192.168.100.1: bytes=32 time<1ms TTL=254
+Reply from 192.168.100.1: bytes=32 time<1ms TTL=254
+Reply from 192.168.100.1: bytes=32 time<1ms TTL=254
+Reply from 192.168.100.1: bytes=32 time=4ms TTL=254
+
+Ping statistics for 192.168.100.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 4ms, Average = 1ms
+```
 - [x] Issue the show ip dhcp binding on R1 to verify DHCP bindings.
+```
+R1#sh ip dhcp binding 
+IP address       Client-ID/              Lease expiration        Type
+                 Hardware address
+192.168.100.6    0001.9703.86A8           --                     Automatic
+192.168.100.70   0090.214E.9A4C           --                     Automatic
+```
 - [x] Issue the show ip dhcp server statistics on R1 and R2 to verify DHCP messages.
+> Данная команда не работает на маршрутизаторе 4331 в CPT
 </details>
