@@ -28,13 +28,13 @@
   <details>
     <summary> Step 2: Cable the network as shown in the topology. </summary>
 
-  #### На данном шаге проводи подключение оборудования согласно приложенной схеме
+  ##### На данном шаге проводи подключение оборудования согласно приложенной схеме
 - [x] Attach the devices as shown in the topology diagram, and cable as necessary.
   </details>      
   <details>
     <summary> Step 3: Configure basic settings for each router. </summary>
     
-#### Проводим базовую настройку
+##### Проводим базовую настройку оборудования
 - [x] Assign a device name to the router.
 ```
 hostname R1
@@ -89,7 +89,7 @@ ntp server 10.10.10.10
   <details>
     <summary> Step 4: Configure Inter-VLAN Routing on R1 </summary>
 
-#### Настройка / конфигурация 4 шага  
+##### Проводим настройка оборудования согласно 4 шагу  
 - [x] Activate interface G0/0/1 on the router.
 - [x] Configure sub-interfaces for each VLAN as required by the IP addressing table. All sub-interfaces use 802.1Q encapsulation and are assigned the first usable address from the IP address pool you have calculated. Ensure the sub-interface for the native VLAN does not have an IP address assigned. Include a description for each sub-interface.
 - [x] Verify the sub-interfaces are operational.
@@ -116,7 +116,7 @@ interface GigabitEthernet0/0/1.1000
   <details>
     <summary> Step 5: Configure G0/0/1 on R2, then G0/0/0 and static routing for both routers </summary>
 
-#### Настройки \ конфигурация 5 шага 
+##### Проводим настройка оборуджования согласно 5 шагу
 - [x] Configure G0/0/1 on R2 with the first IP address of Subnet C you calculated earlier.
 ```
 interface GigabitEthernet0/0/1
@@ -156,7 +156,7 @@ Building configuration...
   <details>
     <summary> Step 6: Configure basic settings for each switch. </summary>
 
-#### Настройка аналогично 3 шагу [Step #3](#проводим-базовую-настройку)
+##### Проводим настройку оборудования аналогично 3 шагу [Step #3](#проводим-базовую-настройку)
 - [x] Assign a device name to the switch.
 - [x] Open configuration window
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
@@ -173,6 +173,7 @@ Building configuration...
   <details>
     <summary> Step 7: Create VLANs on S1. </summary>
    
+##### Проводим настройку оборудования согласно 7 шагу
 ###### Note: S2 is only configured with basic settings.
 - [x] Create and name the required VLANs on switch 1 from the table above.
 ```
@@ -249,7 +250,7 @@ VLAN Name                             Status    Ports
   <details>
     <summary> Step 9: Manually configure S1’s interface F0/5 as an 802.1Q trunk. </summary>
 
-#### Прикладываю конфиги настроек по пунктам ниже
+##### Проводим настройку оборудования согласно 9 шагу
 - [x] Change the switchport mode on the interface to force trunking.
 - [x] As a part of the trunk configuration, set the native VLAN to 1000.
 - [x] As another part of trunk configuration, specify that VLANs 100, 200, and 1000 are allowed to cross the trunk.
@@ -287,7 +288,8 @@ Fa0/5       100,200,1000
 ### In Part 2, you will configure and verify a DHCPv4 Server on R1. The DHCPv4 server will service two subnets, Subnet A and Subnet C.   
   <details>
     <summary> Step 1: Configure R1 with DHCPv4 pools for the two supported subnets. Only the DHCP Pool for subnet A is given below </summary>
-    
+
+##### Проводим настройку оборудования аналогично 3 шагу [Step #3](#проводим-базовую-настройку)
 - [x] Exclude the first five useable addresses from each address pool.
 - [x] Open configuration window
 - [x] Create the DHCP pool (Use a unique name for each pool).
@@ -300,14 +302,13 @@ Fa0/5       100,200,1000
   <details>
     <summary> Step 2: Save your configuration </summary>
   
- #### Подзаголовок   
+##### Сохраняем настройки
 - [x] Save the running configuration to the startup configuration file.
-- [x] Close configuration window
   </details>      
   <details>
     <summary> Step 3: Verify the DHCPv4 Server configuration </summary>
 
-#### Подзаголовок
+#### Приступаем к настройке DHCP сервера
 - [x] Issue the command show ip dhcp pool to examine the pool details.
 - [x] Issue the command show ip dhcp bindings to examine established DHCP address assignments.
 - [x] Issue the command show ip dhcp server statistics to examine DHCP messages.
