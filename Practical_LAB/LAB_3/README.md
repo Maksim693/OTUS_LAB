@@ -35,15 +35,54 @@
     
 #### Подзаголовок
 - [x] Assign a device name to the router.
-- [x] Open configuration window
-- [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
+```
+hostname R1
+```
+- [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
+though they were host names.
+```
+no ip domain-lookup
+```
 - [x] Assign class as the privileged EXEC encrypted password.
+```
+enable secret class
+```
 - [x] Assign cisco as the console password and enable login.
+```
+line console 0
+password cisco
+login
+```
 - [x] Assign cisco as the VTY password and enable login.
+```
+line vty 0 4
+password cisco
+login
+```
 - [x] Encrypt the plaintext passwords.
+```
+service password-encryption 
+```
 - [x] Create a banner that warns anyone accessing the device that unauthorized access is prohibited.
+```
+banner motd $ Authorized Users Only! $
+```
 - [x] Save the running configuration to the startup configuration file.
-- [x] Set the clock on the router to today’s time and date.
+```
+copy running-config startup-config 
+```
+- [x] Set the clock on the router.
+>Непонятно как настроить время в CPT, кроме timezone и настройки с помощью NTP вариантов нет. 
+>Первый вариант приложил команды для "ручной" настройки времени на Сisco 
+```
+clock timezone msk 3
+clock set 10:30:00 18 june 2025
+```
+>Второй вариант это настроить NTP.
+```
+clock timezone msk 3
+ntp server 10.10.10.10
+```
 ###### Note: Use the question mark (?) to help with the correct sequence of parameters needed to execute this command.
   </details>      
   <details>
