@@ -1,5 +1,6 @@
 # Практическая работа №3
 ## "Implement DHCPv4"
+- Техническое задание можно посмотреть в файле - ["7.4.2 Lab - Implement DHCPv4"](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/7.4.2%20Lab%20-%20Implement%20DHCPv4.pdf)
 <details>
   <summary> Part 1: Build the Network and Configure Basic Device Settings </summary>
   
