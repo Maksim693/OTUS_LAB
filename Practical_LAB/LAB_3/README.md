@@ -18,12 +18,12 @@
 | Device | Interface | IP Address | Subnet Mask | Default Gateway |
 | :-:| :----------| :-------------| :---------------| :----------:|
 | R1 | G0/0/1.200 | 192.168.200.1 | 255.255.255.224 | N/A |
-| S1 | MGMT_200 | 192.168.200.2 | 255.255.255.224 | 192.168.200.1 |
+| S1 | MGMT_200   | 192.168.200.2 | 255.255.255.224 | 192.168.200.1 |
 - [x] One subnet, “Subnet C”, supporting 12 hosts (the client network at R2).
 ###### Record the first IP address in the Addressing Table for R2 G0/0/1.
 | Device | Interface | IP Address | Subnet Mask | Default Gateway |
-| :-:| :----------| :--------------| :---------------| :--:|
-| R2 | G0/0/1.100 | 192.168.100.65 | 255.255.255.240 | N/A |
+| :-:| :------| :--------------| :---------------| :--:|
+| R2 | G0/0/1 | 192.168.100.65 | 255.255.255.240 | N/A |
   </details>
   <details>
     <summary> Step 2: Cable the network as shown in the topology. </summary>
@@ -79,21 +79,22 @@ interface GigabitEthernet0/0/1.1000
 #### Подзаголовок    
 - [x] Configure G0/0/1 on R2 with the first IP address of Subnet C you calculated earlier.
 ```
-interface GigabitEthernet0/0/1.100
- description Clients_100
- encapsulation dot1Q 100
+interface GigabitEthernet0/0/1
  ip address 192.168.100.65 255.255.255.240
 ```
 - [x] Configure interface G0/0/0 for each router based on the IP Addressing table above.
 ```
-interface GigabitEthernet0/0/0
- ip address 10.0.0.2 255.255.255.252
- duplex auto
- speed auto
+R1(config)#interface GigabitEthernet0/0/0
+R1(config-if)#ip address 10.0.0.1 255.255.255.252
+```
+```
+R2(config)#interface GigabitEthernet0/0/0
+R2(config-if)#ip address 10.0.0.2 255.255.255.252
 ```
 - [x] Configure a default route on each router pointed to the IP address of G0/0/0 on the other router.
 ```
-ip route 0.0.0.0 0.0.0.0 10.0.0.1 
+R1(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.2
+R2(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.1
 ```
 - [x] Verify static routing is working by pinging R2’s G0/0/1 address from R1.
 ```
@@ -175,31 +176,68 @@ S1(config)#interface range Fa0/1-4,Fa0/7-24,Gi0/1-2
 S1(config-if-range)#switchport access vlan 999
 S1(config-if-range)#shutdown
 ```
-- [x] Close configuration window
-- [x] Open configuration window
-- [x] Close configuration window
   </details>      
   <details>
     <summary> Step 8: Assign VLANs to the correct switch interfaces. </summary>
     
+#### Настройка клиентского влана    
 - [x] Assign used ports to the appropriate VLAN (specified in the VLAN table above) and configure them for static access mode.
-- [x] Open configuration window
+```
+interface FastEthernet0/6
+ switchport access vlan 100
+ switchport mode access
+```
 - [x] Verify that the VLANs are assigned to the correct interfaces.
+```
+S1#sh vlan brief 
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+100  Clients_100                      active    Fa0/6
+200  MGMT_200                         active    
+999  Parking_Lot_999                  active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10
+                                                Fa0/11, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23, Fa0/24, Gig0/1, Gig0/2
+```
 #### Question:
 - Why is interface F0/5 listed under VLAN 1?
->
+> В конфигурации выше не видно, чтобы 5 порт находился в 1 влане, т.к. я уже настроил влан-транк на данном порту и изменил Native vlan. 5 порт находится в 1 влане до перевода в режим 'mode trunk'
   </details>      
   <details>
     <summary> Step 9: Manually configure S1’s interface F0/5 as an 802.1Q trunk. </summary>
-    
+
+#### Прикладываю конфиги настроек по пунктам ниже
 - [x] Change the switchport mode on the interface to force trunking.
 - [x] As a part of the trunk configuration, set the native VLAN to 1000.
 - [x] As another part of trunk configuration, specify that VLANs 100, 200, and 1000 are allowed to cross the trunk.
 - [x] Save the running configuration to the startup configuration file.
 - [x] Verify trunking status.
+```
+interface FastEthernet0/5
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 100,200,1000
+ switchport mode trunk
+```
+```
+S1#show interfaces trunk 
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/5       on           802.1q         trunking      1000
+
+Port        Vlans allowed on trunk
+Fa0/5       100,200,1000
+
+Port        Vlans allowed and active in management domain
+Fa0/5       100,200,1000
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/5       100,200,1000
+```
 #### Question:
 - At this point, what IP address would the PC’s have if they were connected to the network using DHCP?
-> Close configuration window
+> Оба PC получают ip из пула 169.254.0.0 255.255.0.0
   </details>
 </details>
 
