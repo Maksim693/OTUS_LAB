@@ -477,3 +477,30 @@ IP address       Client-ID/              Lease expiration        Type
 - [x] Issue the show ip dhcp server statistics on R1 and R2 to verify DHCP messages.
 > Данная команда не работает на маршрутизаторе 4331 в CPT
 </details>
+
+## "Configure DHCPv6"
+- Техническое задание можно посмотреть в файле - ["8.5.1 Lab - Configure DHCPv6"](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/8.5.1%20Lab%20-%20Configure%20DHCPv6.pdf)
+<details>
+  <summary> Part 1: Build the Network and Configure Basic Device Settings </summary>
+  
+### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
+  <details>
+  <details>
+    <summary> Step 1: Cable the network as shown in the topology. </summary>
+
+  ##### На данном шаге проводи подключение оборудования согласно приложенной схеме
+- [x] Attach the devices as shown in the topology diagram, and cable as necessary.
+  </details>      
+  <details>
+    <summary> Step 2: Configure basic settings for each switch. (Optional) </summary>
+
+- [x] Assign a device name to the router.
+- [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
+though they were host names.
+- [x] Assign class as the privileged EXEC encrypted password.
+- [x] Assign cisco as the console password and enable login.
+- [x] Assign cisco as the VTY password and enable login.
+- [x] Encrypt the plaintext passwords.
+- [x] Create a banner that warns anyone accessing the device that unauthorized access is prohibited.
+- [x] Shutdown all unused ports
+- [x] Save the running configuration to the startup configuration file.   
