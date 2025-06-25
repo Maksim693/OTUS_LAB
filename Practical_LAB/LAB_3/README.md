@@ -476,6 +476,7 @@ IP address       Client-ID/              Lease expiration        Type
 ```
 - [x] Issue the show ip dhcp server statistics on R1 and R2 to verify DHCP messages.
 > Данная команда не работает на маршрутизаторе 4331 в CPT
+  </details>
 </details>
 
 ## "Configure DHCPv6"
@@ -485,7 +486,6 @@ IP address       Client-ID/              Lease expiration        Type
   
 ### In Part 1, you will set up the network topology and configure basic settings on the PC hosts and switches.
   <details>
-  <details>
     <summary> Step 1: Cable the network as shown in the topology. </summary>
 
   ##### На данном шаге проводи подключение оборудования согласно приложенной схеме
@@ -494,6 +494,7 @@ IP address       Client-ID/              Lease expiration        Type
   <details>
     <summary> Step 2: Configure basic settings for each switch. (Optional) </summary>
 
+##### Проводим настройку оборудования согласно 2 шагу 
 - [x] Assign a device name to the router.
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
 though they were host names.
@@ -503,4 +504,112 @@ though they were host names.
 - [x] Encrypt the plaintext passwords.
 - [x] Create a banner that warns anyone accessing the device that unauthorized access is prohibited.
 - [x] Shutdown all unused ports
-- [x] Save the running configuration to the startup configuration file.   
+- [x] Save the running configuration to the startup configuration file
+  </details>
+  <details>
+    <summary> Step 3: Configure basic settings for each router </summary>
+    
+##### Проводим настройку оборудования согласно 3 шагу
+- [x] Assign a device name to the router.
+- [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as
+though they were host names.
+- [x] Assign class as the privileged EXEC encrypted password.
+- [x] Assign cisco as the console password and enable login.
+- [x] Assign cisco as the VTY password and enable login.
+- [x] Encrypt the plaintext passwords.
+- [x] Create a banner that warns anyone accessing the device that unauthorized access is prohibited.
+- [x] Enable IPv6 Routing
+> Из важных моментов отмечу только данный пункт. Все остальные настраиваются по стандрату.
+```
+
+```
+- [x] Save the running configuration to the startup configuration file
+  </details>
+  <details>
+    <summary> Step 4: Configure interfaces and routing for both routers </summary>
+
+##### Проводим настройку оборудования согласно 4 шагу
+- [x] Configure the G0/0/0 and G0/0/1 interfaces on R1 and R2 with the IPv6 addresses specified in the table above.
+```
+
+```
+- [x] Configure a default route on each router pointed to the IP address of G0/0/0 on the other router.
+```
+
+```
+- [x] Verify routing is working by pinging R2’s G0/0/1 address from R1
+```
+
+```
+- [x] Save the running configuration to the startup configuration file.
+  </details>
+</details>
+
+<details>
+  <summary>Part 2: Verify SLAAC Address Assignment from R1</summary>
+  
+### In Part 2, you will verify that Host PC-A receives an IPv6 address using the SLAAC method.
+##### Power PC-A up and ensure that the NIC is configured for IPv6 automatic configuration.
+##### After a few moments, the results of the command ipconfig should show that PC-A has assigned itself an address from the 2001:db8:1::/64 network.
+#### Question:
+- Where did the host-id portion of the address come from?
+>
+
+<details>
+  <summary>Part 3: Configure and Verify a DHCPv6 server on R1</summary>
+
+### In Part 3, you will configure and verify a stateless DHCP server on R1. The objective is to provide PC-A with DNS server and Domain information.
+
+  <details>
+    <summary>Step 1: Examine the configuration of PC-A in more detail</summary>
+
+##### Проводим настройку оборудования согласно 1 шагу
+- [x] Issue the command ipconfig /all on PC-A and take a look at the output.
+- [x] Notice that there is no Primary DNS suffix. Also note that the DNS server addresses provided are “site local anycast” addresses, and not unicast addresses, as would be expected.
+  </details>
+  <details>
+    <summary>Step 2: Configure R1 to provide stateless DHCPv6 for PC-A</summary>
+
+ ##### Проводим настройку оборудования согласно 2 шагу
+- [x] Create an IPv6 DHCP pool on R1 named R1-STATELESS. As a part of that pool, assign the DNS server address as 2001:db8:acad::1 and the domain name as stateless.com.
+- [x] Configure the G0/0/1 interface on R1 to provide the OTHER config flag to the R1 LAN, and specify the DHCP pool you just created as the DHCP resource for this interface.
+- [x] Save the running configuration to the startup configuration file.
+- [x] Restart PC-A.
+- [x] Examine the output of ipconfig /all and notice the changes.
+- [x] Test connectivity by pinging R2’s G0/0/1 interface IP address.
+  </details>
+</details>
+<details>
+  <summary>Part 4: Configure a stateful DHCPv6 server on R1</summary>
+
+### In Part 4, you will configure R1 to respond to DHCPv6 requests from the LAN on R2.
+
+- [x] Create a DHCPv6 pool on R1 for the 2001:db8:acad:3:aaaa::/80 network. This will provide addresses to the LAN connected to interface G0/0/1 on R2. As a part of the pool, set the DNS server to 2001:db8:acad::254, and set the domain name to STATEFUL.com.
+- [x] Assign the DHCPv6 pool you just created to interface g0/0/0 on R1.
+</details>
+<details>
+  <summary>Part 5: Configure and verify DHCPv6 relay on R2.
+
+### In Part 5, you will configure and verify DHCPv6 relay on R2, allowing PC-B to receive an IPv6 Address.
+
+  <details>
+    <summary>Step 1: Power on PC-B and examine the SLAAC address that it generates</summary>
+
+##### Проводим настройку оборудования согласно 1 шагу
+  </details>    
+  <details>
+    <summary>Step 2: Configure R2 as a DHCP relay agent for the LAN on G0/0/1</summary>
+
+##### Проводим настройку оборудования согласно 2 шагу    
+- [x] Configure the ipv6 dhcp relay command on R2 interface G0/0/1, specifying the destination address of the G0/0/0 interface on R1. Also configure the managed-config-flag command.
+- [x] Save your configuration.
+  </details>
+  <details>
+    <summary>Step 3: Attempt to acquire an IPv6 address from DHCPv6 on PC-B</summary>
+
+##### Проводим настройку оборудования согласно 3 шагу
+- [x] Restart PC-B.
+- [x] Open a command prompt on PC-B and issue the command ipconfig /all and examine the output to see the results of the DHCPv6 relay operation.
+- [x] Test connectivity by pinging R1’s G0/0/1 interface IP address.
+  </details>
+</details>
