@@ -156,7 +156,7 @@ Building configuration...
   <details>
     <summary> Step 6: Configure basic settings for each switch. </summary>
 
-##### Проводим настройку оборудования аналогично 3 шагу [Step #3](#проводим-базовую-настройку)
+##### Проводим настройку оборудования аналогично [Шагу №3](#проводим-базовую-настройку-оборудования)
 - [x] Assign a device name to the switch.
 - [x] Open configuration window
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
@@ -289,7 +289,7 @@ Fa0/5       100,200,1000
   <details>
     <summary> Step 1: Configure R1 with DHCPv4 pools for the two supported subnets. Only the DHCP Pool for subnet A is given below </summary>
 
-##### Проводим настройку оборудования аналогично 3 шагу [Step #3](#проводим-базовую-настройку)
+##### Проводим настройку оборудования аналогично [Шагу №3](#проводим-базовую-настройку-оборудования)
 - [x] Exclude the first five useable addresses from each address pool.
 - [x] Open configuration window
 - [x] Create the DHCP pool (Use a unique name for each pool).
