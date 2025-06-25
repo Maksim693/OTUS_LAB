@@ -155,7 +155,7 @@ Building configuration...
   <details>
     <summary> Step 6: Configure basic settings for each switch. </summary>
 
-> Настройка аналогично 3 шагу [Step #3](#проводим_базовую_настройку).
+#### Настройка аналогично 3 шагу [Step #3](#проводим-базовую-настройку)
 - [x] Assign a device name to the switch.
 - [x] Open configuration window
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
