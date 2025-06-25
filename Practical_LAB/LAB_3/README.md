@@ -554,7 +554,7 @@ though they were host names.
 #### Question:
 - Where did the host-id portion of the address come from?
 >
-
+</details>
 <details>
   <summary>Part 3: Configure and Verify a DHCPv6 server on R1</summary>
 
@@ -588,7 +588,7 @@ though they were host names.
 - [x] Assign the DHCPv6 pool you just created to interface g0/0/0 on R1.
 </details>
 <details>
-  <summary>Part 5: Configure and verify DHCPv6 relay on R2.
+  <summary>Part 5: Configure and verify DHCPv6 relay on R2</summary>
 
 ### In Part 5, you will configure and verify DHCPv6 relay on R2, allowing PC-B to receive an IPv6 Address.
 
