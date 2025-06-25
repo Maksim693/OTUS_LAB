@@ -33,7 +33,7 @@
   <details>
     <summary> Step 3: Configure basic settings for each router. </summary>
     
-#### Подзаголовок
+#### Проводим базовую настройку
 - [x] Assign a device name to the router.
 ```
 hostname R1
@@ -88,7 +88,7 @@ ntp server 10.10.10.10
   <details>
     <summary> Step 4: Configure Inter-VLAN Routing on R1 </summary>
 
-#### Подзаголовок  
+#### Настройка / конфигурация 4 шага  
 - [x] Activate interface G0/0/1 on the router.
 - [x] Configure sub-interfaces for each VLAN as required by the IP addressing table. All sub-interfaces use 802.1Q encapsulation and are assigned the first usable address from the IP address pool you have calculated. Ensure the sub-interface for the native VLAN does not have an IP address assigned. Include a description for each sub-interface.
 - [x] Verify the sub-interfaces are operational.
@@ -115,7 +115,7 @@ interface GigabitEthernet0/0/1.1000
   <details>
     <summary> Step 5: Configure G0/0/1 on R2, then G0/0/0 and static routing for both routers </summary>
 
-#### Подзаголовок    
+#### Настройки \ конфигурация 5 шага 
 - [x] Configure G0/0/1 on R2 with the first IP address of Subnet C you calculated earlier.
 ```
 interface GigabitEthernet0/0/1
@@ -155,7 +155,7 @@ Building configuration...
   <details>
     <summary> Step 6: Configure basic settings for each switch. </summary>
 
-> Настройка аналогично 3 шагу.
+> Настройка аналогично 3 шагу [Step #3](#проводим_базовую_настройку).
 - [x] Assign a device name to the switch.
 - [x] Open configuration window
 - [x] Disable DNS lookup to prevent the router from attempting to translate incorrectly entered commands as though they were host names.
