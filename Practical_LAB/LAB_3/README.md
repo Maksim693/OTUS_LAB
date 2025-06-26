@@ -488,7 +488,7 @@ IP address       Client-ID/              Lease expiration        Type
   <details>
     <summary> Step 1: Cable the network as shown in the topology. </summary>
 
-  ##### На данном шаге проводи подключение оборудования согласно приложенной схеме
+##### На данном шаге проводи подключение оборудования согласно приложенной схеме
 - [x] Attach the devices as shown in the topology diagram, and cable as necessary.
   </details>      
   <details>
