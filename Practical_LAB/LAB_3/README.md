@@ -523,7 +523,8 @@ though they were host names.
 - [x] Enable IPv6 Routing
 > Из важных моментов отмечу только данный пункт. Все остальные настраиваются по стандрату.
 ```
-
+R1(config)# ipv6 unicast-routing
+R2(config)# ipv6 unicast-routing
 ```
 - [x] Save the running configuration to the startup configuration file
   </details>
