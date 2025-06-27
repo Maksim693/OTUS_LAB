@@ -1,6 +1,7 @@
 # Практическая работа №3
 ## "Implement DHCPv4"
 - Техническое задание можно посмотреть в файле - ["7.4.2 Lab - Implement DHCPv4"](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/7.4.2%20Lab%20-%20Implement%20DHCPv4.pdf)
+- Итоговый файл конфигурации можно скачать нажав на [ссылку](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/CPT-LAB3_Implement%20DHCPv4.pkt)
 <details>
   <summary> Part 1: Build the Network and Configure Basic Device Settings </summary>
   
@@ -481,6 +482,7 @@ IP address       Client-ID/              Lease expiration        Type
 
 ## "Configure DHCPv6"
 - Техническое задание можно посмотреть в файле - ["8.5.1 Lab - Configure DHCPv6"](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/8.5.1%20Lab%20-%20Configure%20DHCPv6.pdf)
+- Итоговый файл конфигурации можно скачать нажав на [ссылку](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/CPT-LAB3_Configure%20DHCPv6.pkt)
 <details>
   <summary> Part 1: Build the Network and Configure Basic Device Settings </summary>
   
