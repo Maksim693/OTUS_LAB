@@ -483,6 +483,21 @@ IP address       Client-ID/              Lease expiration        Type
 ## "Configure DHCPv6"
 - Техническое задание можно посмотреть в файле - ["8.5.1 Lab - Configure DHCPv6"](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/8.5.1%20Lab%20-%20Configure%20DHCPv6.pdf)
 - Итоговый файл конфигурации можно скачать нажав на [ссылку](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_3/CPT-LAB3_Configure%20DHCPv6.pkt)
+
+#### Addressing Table
+| Device | Interface | IPv6 Address |
+| :-----:| :---------| :------------|
+| R1 | G0/0/0	| 2001:db8:acad:2::1 /64|
+| R1 | G0/0/0 | fe80::1 |
+| R1 | G0/0/1 | 2001:db8:acad:1::1/64 |
+| R1 | G0/0/1 | fe80::1 |
+| R2 | G0/0/0 | 2001:db8:acad:2::2/64 |
+| R2 | G0/0/0 | fe80::2 |
+| R2 | G0/0/1 | 2001:db8:acad:3::1 /64 |
+| R2 | G0/0/1 |	fe80::1 |
+| PC-A | NIC | DHCP |
+| PC-B | NIC |	DHCP |
+
 <details>
   <summary> Part 1: Build the Network and Configure Basic Device Settings </summary>
   
