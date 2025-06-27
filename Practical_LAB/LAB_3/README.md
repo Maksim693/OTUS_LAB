@@ -531,15 +531,30 @@ though they were host names.
 ##### Проводим настройку оборудования согласно 4 шагу
 - [x] Configure the G0/0/0 and G0/0/1 interfaces on R1 and R2 with the IPv6 addresses specified in the table above.
 ```
-
+R1(config)# interface g0/0/1
+R1(config-if)# ipv6 address fe80::1 link-local
+R1(config-if)# ipv6 address 2001:db8:acad:1::1/64
+R1(config)# interface g0/0/0
+R1(config-if)# ipv6 address fe80::1 link-local
+R1(config-if)# ipv6 address 2001:db8:acad:2::1/64
+```
+```
+R2(config)# interface g0/0/1
+R2(config-if)# ipv6 address fe80::1 link-local
+R2(config-if)# ipv6 address 2001:db8:acad:3::1/64
+R2(config)# interface g0/0/0
+R2(config-if)# ipv6 address fe80::2 link-local
+R2(config-if)# ipv6 address 2001:db8:acad:2::2/64
 ```
 - [x] Configure a default route on each router pointed to the IP address of G0/0/0 on the other router.
 ```
-
+R1(config)# ipv6 route ::/0 2001:db8:acad:2::2
+R2(config)# ipv6 route ::/0 2001:db8:acad:2::1
 ```
 - [x] Verify routing is working by pinging R2’s G0/0/1 address from R1
 ```
-
+R1(config)# ipv6 route ::/0 2001:db8:acad:2::2
+R2(config)# ipv6 route ::/0 2001:db8:acad:2::1
 ```
 - [x] Save the running configuration to the startup configuration file.
   </details>
@@ -553,7 +568,8 @@ though they were host names.
 ##### After a few moments, the results of the command ipconfig should show that PC-A has assigned itself an address from the 2001:db8:1::/64 network.
 #### Question:
 - Where did the host-id portion of the address come from?
->
+> Генерация IPv6 адресa зависит от операционной системы. Будет сгенерирован адрес EUI-64 на основе MAC-адреса интерфейса, либо хост сгенерирует случайный 64-разрядный адрес.
+
 </details>
 <details>
   <summary>Part 3: Configure and Verify a DHCPv6 server on R1</summary>
@@ -565,18 +581,66 @@ though they were host names.
 
 ##### Проводим настройку оборудования согласно 1 шагу
 - [x] Issue the command ipconfig /all on PC-A and take a look at the output.
-- [x] Notice that there is no Primary DNS suffix. Also note that the DNS server addresses provided are “site local anycast” addresses, and not unicast addresses, as would be expected.
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0001.9703.86A8
+   Link-local IPv6 Address.........: FE80::201:97FF:FE03:86A8
+   IPv6 Address....................: 2001:DB8:ACAD:1:201:97FF:FE03:86A8
+   Autoconfiguration IP Address....: 169.254.134.168
+   Subnet Mask.....................: 255.255.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+   DHCP Servers....................: 192.168.100.1
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-60-01-84-E5-00-01-97-03-86-A8
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
+##### Notice that there is no Primary DNS suffix. Also note that the DNS server addresses provided are “site local anycast” addresses, and not unicast addresses, as would be expected.
   </details>
   <details>
     <summary>Step 2: Configure R1 to provide stateless DHCPv6 for PC-A</summary>
 
  ##### Проводим настройку оборудования согласно 2 шагу
 - [x] Create an IPv6 DHCP pool on R1 named R1-STATELESS. As a part of that pool, assign the DNS server address as 2001:db8:acad::1 and the domain name as stateless.com.
+```
+R1(config)# ipv6 dhcp pool R1-STATELESS
+R1(config-dhcp)# dns-server 2001:db8:acad::254
+R1(config-dhcp)# domain-name STATELESS.com
+```
 - [x] Configure the G0/0/1 interface on R1 to provide the OTHER config flag to the R1 LAN, and specify the DHCP pool you just created as the DHCP resource for this interface.
+```
+R1(config)# interface g0/0/1
+R1(config-if)# ipv6 nd other-config-flag
+R1(config-if)# ipv6 dhcp server R1-STATELESS
+```
 - [x] Save the running configuration to the startup configuration file.
 - [x] Restart PC-A.
 - [x] Examine the output of ipconfig /all and notice the changes.
 - [x] Test connectivity by pinging R2’s G0/0/1 interface IP address.
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0001.9703.86A8
+   Link-local IPv6 Address.........: FE80::201:97FF:FE03:86A8
+   IPv6 Address....................: 2001:DB8:ACAD:1:201:97FF:FE03:86A8
+   Autoconfiguration IP Address....: 169.254.134.168
+   Subnet Mask.....................: 255.255.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+   DHCP Servers....................: 192.168.100.1
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-60-01-84-E5-00-01-97-03-86-A8
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
   </details>
 </details>
 <details>
@@ -585,7 +649,17 @@ though they were host names.
 ### In Part 4, you will configure R1 to respond to DHCPv6 requests from the LAN on R2.
 
 - [x] Create a DHCPv6 pool on R1 for the 2001:db8:acad:3:aaaa::/80 network. This will provide addresses to the LAN connected to interface G0/0/1 on R2. As a part of the pool, set the DNS server to 2001:db8:acad::254, and set the domain name to STATEFUL.com.
+```
+R1(config)# ipv6 dhcp pool R2-STATEFUL
+R1(config-dhcp)# address prefix 2001:db8:acad:3:aaa::/80
+R1(config-dhcp)# dns-server 2001:db8:acad::254
+R1(config-dhcp)# domain-name STATEFUL.com
+```
 - [x] Assign the DHCPv6 pool you just created to interface g0/0/0 on R1.
+```
+R1(config)# interface g0/0/0
+R1(config-if)# ipv6 dhcp server R2-STATEFUL
+```
 </details>
 <details>
   <summary>Part 5: Configure and verify DHCPv6 relay on R2</summary>
@@ -595,13 +669,39 @@ though they were host names.
   <details>
     <summary>Step 1: Power on PC-B and examine the SLAAC address that it generates</summary>
 
-##### Проводим настройку оборудования согласно 1 шагу
+##### Проводим проверку PC-B согласно 1 шагу
+```
+C:\>
+ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0090.214E.9A4C
+   Link-local IPv6 Address.........: FE80::290:21FF:FE4E:9A4C
+   IPv6 Address....................: ::
+   Autoconfiguration IP Address....: 169.254.154.76
+   Subnet Mask.....................: 255.255.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+   DHCP Servers....................: 10.0.0.1
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-41-00-3B-02-00-90-21-4E-9A-4C
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
   </details>    
   <details>
     <summary>Step 2: Configure R2 as a DHCP relay agent for the LAN on G0/0/1</summary>
 
 ##### Проводим настройку оборудования согласно 2 шагу    
 - [x] Configure the ipv6 dhcp relay command on R2 interface G0/0/1, specifying the destination address of the G0/0/0 interface on R1. Also configure the managed-config-flag command.
+На роутере 4331 в CPT следующие команды ввести нельзя, поэтому просто укажу, что необходимо настроить на интерфейсе
+```
+R2(config)# interface g0/0/1
+R2(config-if)# ipv6 nd managed-config-flag
+R2(config-if)# ipv6 dhcp relay destination 2001:db8:acad:2::1 g0/0/0
+```
 - [x] Save your configuration.
   </details>
   <details>
