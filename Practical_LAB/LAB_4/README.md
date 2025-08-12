@@ -8,7 +8,7 @@
 3. [Настроить каждый VPC в каждом офисе в своем VLAN](#настройка-vpc-в-каждом-офисе-в-своем-vlan)
 4. [Настроить VLAN/Loopbackup interface управления для сетевых устройств](#настройка-vlanloopbackup-interface-управления-для-сетевых-устройств)
 
-5. [Итоговая конфигурация](#созд)
+5. [Итоговая конфигурация](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_4/LAB4_%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D1%81%D0%B5%D1%82%D0%B8.zip)
 ------------
 
 ### Адресное пространство для лабораторного стенда
@@ -81,6 +81,14 @@
 ------------
 
 ### Настройка ip-адресов на активных портах
+##### Пример настройки ip-адресов
+```
+R13#configure terminal
+R13(config)#interface Ethernet0/0
+R13(config-if)#ip address 10.120.0.37 255.255.255.252
+R13(config-if)#end
+R13#write memory
+```
 ##### ***Москва (AS 1001)***
 | Device | Interface | IP-Address | Mask | Description |
 | :----- | :-------- | :--------- | :--- | :---------- |
