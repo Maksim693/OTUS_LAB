@@ -24,6 +24,8 @@
 | 192.168.0.0/24 | Москва | Client (Vlan 20) |
 | 192.168.1.0/24 | Москва | Client (Vlan 30) |
 
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_4/Screen/Screen_%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%20-%20AS1001.png)
+
 ##### ***C.-Петербург (AS 2042)***
 | Network / Mask | Описание | Линк |
 | :------------- | :------- | :--- |
@@ -34,6 +36,8 @@
 | 89.95.0.0/30 | С.-Петербург | WAN_Rez R18-R26(Триада) |
 | 192.168.64.0/24 | С.-Петербург | Client (Vlan 40) |
 | 192.168.65.0/24 | С.-Петербург | Client (Vlan 50) |
+
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_4/Screen/Screen_%D0%A1.-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%20-%20AS2042.png)
 
 ##### ***Чокурдах***
 | Network / Mask | Описание | Линк |
@@ -51,6 +55,8 @@
 | 10.13.0.27/32 | Лабытнанги | Loopback0 |
 | 50.100.1.0/30 | Лабытнанги | WAN R27-R25(Триада) |
 
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_4/Screen/Screen_%D0%9B%D0%B0%D0%B1%D1%8B%D1%82%D0%B0%D0%BD%D0%B3%D0%B8%20%2B%20%D0%A7%D0%BE%D0%BA%D1%83%D1%80%D0%B4%D0%B0%D1%85.png)
+
 ##### ***Триада (AS 520)***
 | Network / Mask | Описание | Линк |
 | :------------- | :------- | :--- |
@@ -64,6 +70,8 @@
 | 60.122.1.0/30 | Триада | WAN R23-R22(Киторн) |
 | 70.155.1.0/30 | Триада | WAN R24-R21(Ламас) |
 
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_4/Screen/Screen_%D0%A2%D1%80%D0%B8%D0%B0%D0%B4%D0%B0%20-%20AS520.png)
+
 ##### ***Киторн (AS 101)***
 | Network / Mask | Описание | Линк |
 | :------------- | :------- | :--- |
@@ -72,6 +80,8 @@
 | 212.100.1.0/30 | Киторн | WAN R22-R14(Москва) |
 | 112.95.0.0/30 | Киторн | WAN R22-R21(Ламас) |
 
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_4/Screen/Screen_%D0%9A%D0%B8%D1%82%D0%BE%D1%80%D0%BD%20-%20AS101.png)
+
 ##### ***Ламас (AS 301)***
 | Network / Mask | Описание | Линк |
 | :------------- | :------- | :--- |
@@ -79,6 +89,9 @@
 | 70.155.1.0/30 | Ламас | WAN R21-R24(Триада) |
 | 212.95.0.0/30 | Ламас | WAN R21-R15(Москва) |
 | 112.95.0.0/30 | Ламас | WAN R21-R22(Киторн) |
+
+![](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_4/Screen/Screen_%D0%9B%D0%B0%D0%BC%D0%B0%D1%81%20-%20AS301.png)
+
 ------------
 
 ### Настройка ip-адресов на активных портах
