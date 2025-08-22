@@ -74,7 +74,6 @@ router eigrp EIGRP
  address-family ipv4 unicast autonomous-system 1
   !
   topology base
-   redistribute connected
   exit-af-topology
   network 10.121.0.0 0.0.0.3
   network 10.121.0.4 0.0.0.3
