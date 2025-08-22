@@ -7,3 +7,4 @@
 - LAB_5 ["Маршрутизация на основе политик (PBR)"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_5)
 - LAB_6 ["OSPF. Фильтрация"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_6)
 - LAB_7 ["IS-IS. Продолжение"](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_7/README.md)
+- LAB_8 ["EIGRP"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_8)
