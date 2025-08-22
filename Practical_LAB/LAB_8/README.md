@@ -14,13 +14,81 @@
 ### Итоговая конфигурация устройств
 - Маршрутизатор R16
 ```
+router eigrp EIGRP
+ !
+ address-family ipv4 unicast autonomous-system 1
+  !
+  af-interface Ethernet0/3
+   summary-address 0.0.0.0 0.0.0.0
+  exit-af-interface
+  !
+  af-interface Ethernet0/0
+   passive-interface
+  exit-af-interface
+  !
+  af-interface Ethernet0/1
+   summary-address 10.121.0.0 255.255.255.0
+   summary-address 192.168.64.0 255.255.252.0
+  exit-af-interface
+  !
+  topology base
+   redistribute connected
+  exit-af-topology
+  network 10.121.0.0 0.0.0.3
+  network 10.121.0.8 0.0.0.3
+  network 10.121.0.12 0.0.0.3
+  network 10.243.0.0 0.0.0.255
+  network 192.168.64.0
+  network 192.168.65.0
+ exit-address-family
 ```
 - Маршрутизатор R17
 ```
+router eigrp EIGRP
+ !
+ address-family ipv4 unicast autonomous-system 1
+  !
+  af-interface Ethernet0/1
+   summary-address 10.121.0.0 255.255.255.0
+   summary-address 192.168.64.0 255.255.252.0
+  exit-af-interface
+  !
+  af-interface Ethernet0/0
+   passive-interface
+  exit-af-interface
+  !
+  topology base
+   redistribute connected
+  exit-af-topology
+  network 10.121.0.4 0.0.0.3
+  network 10.121.0.12 0.0.0.3
+  network 10.243.0.0 0.0.0.255
+  network 192.168.64.0
+  network 192.168.65.0
+ exit-address-family
 ```
 - Маршрутизатор R18
 ```
+router eigrp EIGRP
+ !
+ address-family ipv4 unicast autonomous-system 1
+  !
+  topology base
+   redistribute connected
+  exit-af-topology
+  network 10.121.0.0 0.0.0.3
+  network 10.121.0.4 0.0.0.3
+ exit-address-family
 ```
 - Маршрутизатор R32
 ```
+router eigrp EIGRP
+ !
+ address-family ipv4 unicast autonomous-system 1
+  !
+  topology base
+   redistribute connected
+  exit-af-topology
+  network 10.121.0.8 0.0.0.3
+ exit-address-family
 ```
