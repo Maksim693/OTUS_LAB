@@ -9,3 +9,4 @@
 - LAB_7 ["IS-IS. Продолжение"](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_7/README.md)
 - LAB_8 ["EIGRP"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_8)
 - LAB_9 ["BGP. Основы"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_9)
+- LAB_10 ["iBGP"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_10)
