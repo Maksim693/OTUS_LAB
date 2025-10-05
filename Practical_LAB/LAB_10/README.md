@@ -15,7 +15,7 @@
 3. Настройте офиса Москва так, чтобы приоритетным провайдером стал Ламас
 4. Настройте офиса С.-Петербург так, чтобы трафик до любого офиса распределялся по двум линкам одновременно
 5. Все сети в лабораторной работе должны иметь IP связность
-6. План работы и изменения зафиксированы в документации
+6. Файл в EVE-NG можно скачать нажавав на данную [ссылку](https://github.com/Maksim693/OTUS_LAB/blob/main/Practical_LAB/LAB_10/_Exports_unetlab_export-20251005-194525.zip)
 ------------
 
 ### Итоговая конфигурация
@@ -158,4 +158,12 @@ Multipath: eBGP
     89.100.1.1 from 89.100.1.1 (10.14.0.24)
       Origin IGP, metric 0, localpref 100, valid, external, multipath, best
       rx pathid: 0, tx pathid: 0x0
+```
+- Все сети в лабораторной работе имеют IP связность, пример:
+```
+R18#ping 112.95.0.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 112.95.0.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
 ```
