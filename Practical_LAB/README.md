@@ -10,3 +10,7 @@
 - LAB_8 ["EIGRP"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_8)
 - LAB_9 ["BGP. Основы"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_9)
 - LAB_10 ["iBGP"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_10)
+- LAB_11 ["BGP. Фильтрация"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_11)
+- LAB_12 ["Основные протоколы сети интернет"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_12)
+- LAB_13 ["VPN. GRE. DmVPN"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_13)
+- LAB_14 ["IPSec over DmVPN"](https://github.com/Maksim693/OTUS_LAB/tree/main/Practical_LAB/LAB_14)
