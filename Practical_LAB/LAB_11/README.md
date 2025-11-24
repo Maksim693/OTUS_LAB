@@ -18,4 +18,38 @@
 ------------
 
 ### Итоговая конфигурация
-- Настро
+- Настройка фильтрации в офисе Москва так, чтобы не появилось транзитного трафика(As-path)
+```
+R14#sh run | sec as-p
+ip as-path access-list 1 permit ^$
+
+R14#sh run | sec bg
+router bgp 1001
+ bgp log-neighbor-changes
+ network 212.100.1.0 mask 255.255.255.252
+ neighbor 10.10.0.15 remote-as 1001
+ neighbor 10.10.0.15 update-source Loopback0
+ neighbor 10.10.0.15 next-hop-self
+ neighbor 212.100.1.1 remote-as 101
+ neighbor 212.100.1.1 filter-list 1 out
+```
+```
+R15#sh run | sec as-p
+ip as-path access-list 1 permit ^$
+
+R15#sh run | sec bgp
+router bgp 1001
+ bgp log-neighbor-changes
+ network 212.95.0.0 mask 255.255.255.252
+ neighbor 10.10.0.14 remote-as 1001
+ neighbor 10.10.0.14 update-source Loopback0
+ neighbor 10.10.0.14 next-hop-self
+ neighbor 212.95.0.1 remote-as 301
+ neighbor 212.95.0.1 route-map AS301_LAMAS_LP in
+ neighbor 212.95.0.1 filter-list 1 out
+```
+- Настройка фильтрациb в офисе С.-Петербург так, чтобы не появилось транзитного трафика(Prefix-list)
+```
+```
+```
+```
