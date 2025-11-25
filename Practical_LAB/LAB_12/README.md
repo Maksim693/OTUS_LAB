@@ -22,4 +22,23 @@
 ------------
 
 ### Итоговая конфигурация
-- Настро
+- Настройка NAT(PAT) на R14 и R15. Трансляция осуществляетсяя в адрес автономной системы AS1001.
+'''
+access-list 88 permit 192.168.0.0 0.0.0.255
+access-list 88 permit 192.168.1.0 0.0.0.255
+!
+ip nat inside source list 88 interface Ethernet0/2 overload
+!
+interface Ethernet0/0
+ ip nat inside
+ ip ospf 1 area 10
+!
+interface Ethernet0/1
+ ip nat inside
+!
+interface Ethernet0/2
+ ip nat outside
+ !
+interface Ethernet1/0
+ ip nat inside
+'''
