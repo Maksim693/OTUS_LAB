@@ -152,6 +152,35 @@ ip dhcp pool USER30
  network 192.168.1.0 255.255.255.0
  default-router 192.168.1.1
 ```
+```
+VPCS> ip dhcp
+DDORA IP 192.168.1.5/24 GW 192.168.1.1
+```
+```
+VPCS> ip dhcp
+DORA IP 192.168.0.129/24 GW 192.168.0.1
+```
 - Настройка NTP сервер на R12 и R13. Все устройства в офисе Москва синхронизируют время с R12 и R13
 ```
+ntp master 1
+ntp update-calendar
+!
+interface Loopback0
+ ip address 10.10.0.12 255.255.255.255
+ ntp broadcast
+```
+```
+ntp server 10.10.0.12
+ntp server 10.10.0.13
+```
+```
+MLSW4#sh ntp status
+Clock is synchronized, stratum 2, reference is 10.10.0.12
+nominal freq is 250.0000 Hz, actual freq is 250.0000 Hz, precision is 2**10
+ntp uptime is 5500 (1/100 of seconds), resolution is 4000
+reference time is ECD31658.01CAC088 (18:26:32.007 UTC Thu Nov 27 2025)
+clock offset is 0.0000 msec, root delay is 0.00 msec
+root dispersion is 380.89 msec, peer dispersion is 189.45 msec
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is 0.000000000 s/s
+system poll interval is 64, last update was 44 sec ago.
 ```
