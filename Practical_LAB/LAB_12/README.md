@@ -53,3 +53,105 @@ icmp 212.95.0.2:45056  192.168.1.4:45056  70.155.1.2:45056   70.155.1.2:45056
 icmp 212.95.0.2:45312  192.168.1.4:45312  70.155.1.2:45312   70.155.1.2:45312
 ```
 - Настройка NAT(PAT) на R18. Трансляция должна осуществляется в пул из 5 адресов автономной системы AS2042.
+```
+route-map SPD_TRD_03 permit 10
+ match ip address 88
+ match interface Ethernet0/3
+!
+route-map SPD_TRD_02 permit 10
+ match ip address 88
+ match interface Ethernet0/2
+!
+ip nat pool SPB_TRIADA_03 89.95.0.3 89.95.0.6 netmask 255.255.255.248
+ip nat pool SPB_TRIADA_02 89.100.1.3 89.100.1.6 netmask 255.255.255.248
+ip nat inside source route-map SPD_TRD_02 pool SPB_TRIADA_02 overload
+ip nat inside source route-map SPD_TRD_03 pool SPB_TRIADA_03 overload
+!
+interface Ethernet0/0
+ ip address 10.121.0.1 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+!
+interface Ethernet0/1
+ ip address 10.121.0.5 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+!
+interface Ethernet0/2
+ ip address 89.100.1.2 255.255.255.248
+ ip nat outside
+ ip virtual-reassembly in
+!
+interface Ethernet0/3
+ ip address 89.95.0.2 255.255.255.248
+ ip nat outside
+ ip virtual-reassembly in
+!
+access-list 88 permit 192.168.64.0 0.0.0.255
+access-list 88 permit 192.168.65.0 0.0.0.255
+```
+```
+R18#sh ip nat translations
+Pro Inside global      Inside local       Outside local      Outside global
+icmp 89.95.0.4:20878   192.168.64.4:20878 212.100.1.2:20878  212.100.1.2:20878
+icmp 89.95.0.4:21390   192.168.64.4:21390 212.100.1.2:21390  212.100.1.2:21390
+icmp 89.95.0.4:21902   192.168.64.4:21902 212.100.1.2:21902  212.100.1.2:21902
+icmp 89.95.0.4:22414   192.168.64.4:22414 212.100.1.2:22414  212.100.1.2:22414
+icmp 89.95.0.4:22926   192.168.64.4:22926 212.100.1.2:22926  212.100.1.2:22926
+```
+- Настройка статического NAT для R20
+```
+ip nat inside source static 10.120.0.26 212.95.0.2
+```
+- Настройка NAT так, чтобы R19 был доступен с любого узла для удаленного управления
+```
+ip nat inside source static 10.120.0.10 212.100.1.2
+!
+interface Ethernet0/3
+ ip nat inside
+```
+- Настройка статического NAT(PAT) для офиса Чокурдах
+```
+```
+- Настройка для IPv4 DHCP сервер в офисе Москва на маршрутизаторах R12 и R13. VPC1 и VPC7 должны получать сетевые настройки по DHCP
+##### Настройка на R-12
+```
+ip dhcp excluded-address 192.168.0.1
+ip dhcp excluded-address 192.168.0.2
+ip dhcp excluded-address 192.168.0.3
+ip dhcp excluded-address 192.168.1.1
+ip dhcp excluded-address 192.168.1.2
+ip dhcp excluded-address 192.168.1.3
+ip dhcp excluded-address 192.168.1.129 192.168.1.254
+ip dhcp excluded-address 192.168.0.129 192.168.0.254
+!
+ip dhcp pool USER20
+ network 192.168.0.0 255.255.255.0
+ default-router 192.168.0.1
+!
+ip dhcp pool USER30
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ ```
+ ##### Настройка на R-13
+ ```
+ip dhcp excluded-address 192.168.0.1
+ip dhcp excluded-address 192.168.0.2
+ip dhcp excluded-address 192.168.0.3
+ip dhcp excluded-address 192.168.1.1
+ip dhcp excluded-address 192.168.1.2
+ip dhcp excluded-address 192.168.1.3
+ip dhcp excluded-address 192.168.1.4 192.168.1.128
+ip dhcp excluded-address 192.168.0.4 192.168.0.128
+!
+ip dhcp pool USER20
+ network 192.168.0.0 255.255.255.0
+ default-router 192.168.0.1
+!
+ip dhcp pool USER30
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+```
+- Настройка NTP сервер на R12 и R13. Все устройства в офисе Москва синхронизируют время с R12 и R13
+```
+```
