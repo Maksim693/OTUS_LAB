@@ -67,7 +67,7 @@ interface Tunnel2
  tunnel source Ethernet0/0
  tunnel mode gre multipoint
 ```
-- Настройка на R15 (Чокурдах)
+- Настройка на R28 (Чокурдах)
 ```
 interface Tunnel2
  ip address 10.20.20.2 255.255.255.0
